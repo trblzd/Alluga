@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { commerce } from '../../../lib/Commerce';
+import { commerce } from '../../../lib/commerce';
 import useStyles from './Styles';
 import DeliveryForm from '../DeliveryForm';
 import PaymentForm from '../PaymentForm';
@@ -15,21 +15,19 @@ const Checkout = ({ cart }) => {
     const [checkoutToken, setCheckoutToken] = useState(null);
     const [shippingData, setShippingData] = useState({})
     const classes = useStyles();
-    const navigate = useNavigate();
 
     useEffect(() => {
-        if (cart.id) {
-            const generateToken = async () => {
-                try {
-                    const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
+        const generateToken = async () => {
+            try {
+                const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
+                console.log(token);
+                setCheckoutToken(token);
+            } catch (error) {
+            }
+        };
 
-                    setCheckoutToken(token);
-                } catch (error) {
-                }
-            };
+        generateToken();
 
-            generateToken();
-        }
     }, [cart]);
 
     const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -46,7 +44,7 @@ const Checkout = ({ cart }) => {
     )
     const Form = () => activeStep === 0
         ? <DeliveryForm checkoutToken={checkoutToken} next={next} />
-        : <PaymentForm shippingData={shippingData} />
+        : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} />
 
     return (
         <>

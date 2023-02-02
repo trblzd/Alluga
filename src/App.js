@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
-import { commerce } from "./lib/Commerce";
+import { commerce } from "./lib/commerce";
 import { Navbar, Products, Cart, Checkout } from "./Components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -16,29 +16,26 @@ const App = () => {
     setProducts(data);
   };
   const fetchCart = async () => {
-    const cart = await commerce.cart.retrieve()
-    console.log(cart);
-    setCart(cart);
-    
+    setCart( await commerce.cart.retrieve());
   }
   const handleAddToCart = async (productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity);
-    setCart(item.cart);
+    setCart(item);
   }
 
-  const handleUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await commerce.cart.update(lineItemId, {quantity});
-    setCart(response.cart);
+  const handleUpdateCartQty = async (productId, quantity) => {
+    const item = await commerce.cart.update(productId, {quantity});
+    setCart(item);
   }
   
-  const handleRemoveFromCart = async (lineItemId) => {
-    const response = await commerce.cart.remove(lineItemId);
-    setCart(response.cart);
+  const handleRemoveFromCart = async (productId) => {
+    const item = await commerce.cart.remove(productId);
+    setCart(item);
   }
 
   const handleEmptyCart = async () => {
-    const response = await commerce.cart.empty();
-    setCart(response.cart);
+    const {cart} = await commerce.cart.empty();
+    setCart(cart);
   }
 
   useEffect(() => {

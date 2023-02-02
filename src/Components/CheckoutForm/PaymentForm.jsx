@@ -7,10 +7,10 @@ import Review from './Review.jsx';
 
 
 
-const PaymentForm = () => {
+const PaymentForm = ({ checkoutToken }) => {
     return (
         <>
-            <Review />
+            <Review checkoutToken={checkoutToken} />
         </>
     )
 }

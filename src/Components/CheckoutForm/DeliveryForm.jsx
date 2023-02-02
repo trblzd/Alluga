@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { commerce } from '../../lib/Commerce'
 import FormInput from './CustomTextField';
 
 
 const DeliveryForm = ({ checkoutToken, next }) => {
     const methods = useForm();
+
+
     return (
         <>
             <Typography variant='h6' gutterBottom>Ponto de Entrega</Typography>
