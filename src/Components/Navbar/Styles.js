@@ -4,9 +4,14 @@ import { Gradient } from "@material-ui/icons";
 const drawerWidth = 0;
 
 export default makeStyles((theme) => ({
+  DivBar: {
+    background: 'linear-gradient(5deg, #007A12, #C7002F )',
+    height: '10px',
+  },
   appBar: {
+    animation: '10s infinite',
     boxShadow: "none",
-    borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+    borderBottom: "0px solid rgba(0, 0, 0, 0.12)",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,

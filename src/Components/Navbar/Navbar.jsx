@@ -12,9 +12,9 @@ const Navbar = ({ totalItems }) => {
         <AppBar position="fixed" className={classes.appBar} color="inherit">
             <Toolbar>
                 <Typography component={Link} to="/" variant='h6' className={classes.title} color="inherit">
-                    <img src={logo} alt="Commerce.js" height="25px" className={classes.image} />
-                    Alluga
+                    <img src={logo} alt="AllugaLogo" width="90px" className={classes.image} />
                 </Typography>
+                <div className={classes.DivBar} />
                 <div className={classes.grow} />
                 {location.pathname == '/' && (
                     < div className={classes.button}>
