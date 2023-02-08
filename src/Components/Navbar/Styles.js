@@ -1,15 +1,12 @@
 import { makeStyles, alpha } from "@material-ui/core/styles";
-import { Gradient } from "@material-ui/icons";
 
 const drawerWidth = 0;
 
+//palette #C7002F #F7406B #007A12 #9DCC6C #6FBF7B
+
 export default makeStyles((theme) => ({
-  DivBar: {
-    background: 'linear-gradient(5deg, #007A12, #C7002F )',
-    height: '10px',
-  },
   appBar: {
-    animation: '10s infinite',
+    background: "#9DCC6C",
     boxShadow: "none",
     borderBottom: "0px solid rgba(0, 0, 0, 0.12)",
     [theme.breakpoints.up("sm")]: {

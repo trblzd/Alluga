@@ -7,7 +7,7 @@ import Review from './Review.jsx';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ checkoutToken, nextStep, backStep, onCaptureCheckout, shippingData }) => {
+const PaymentForm = ({ checkoutToken, nextStep, backStep, onCaptureCheckout, shippingData, timeout }) => {
     const handleSubmit = async (event, elements, stripe) => {
         event.preventDefault();
 
@@ -36,6 +36,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, onCaptureCheckout, shi
                 }
             }
             onCaptureCheckout(checkoutToken.id, orderData);
+            timeout()
             nextStep();
         }
 
@@ -43,7 +44,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, onCaptureCheckout, shi
             <>
                 <Review checkoutToken={checkoutToken} />
                 <Divider />
-                <Typography varient="h6" gutterBottom style={{ margin: '20px 0' }}>Metodo de pagamento</Typography>
+                <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>Metodo de pagamento</Typography>
                 <Elements stripe={stripePromise}>
                     <ElementsConsumer>
                         {({ elements, stripe }) => (
@@ -53,7 +54,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, onCaptureCheckout, shi
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <Button variant='outlined' onClick={backStep}>Voltar</Button>
                                     <Button type="submit" variant="contained" disabled={!stripe} color="primary">
-                                        Finalizar {checkoutToken.subtotal.formated_with_symbol}
+                                        Finalizar {checkoutToken.subtotal.formatted_with_symbol}
                                     </Button>
                                 </div>
                             </form>

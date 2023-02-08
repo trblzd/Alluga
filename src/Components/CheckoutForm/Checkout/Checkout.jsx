@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
-import { Link, useNavigate } from 'react-router-dom';
+import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { commerce } from '../../../lib/commerce';
 import useStyles from './Styles';
@@ -8,13 +8,15 @@ import DeliveryForm from '../DeliveryForm';
 import PaymentForm from '../PaymentForm';
 
 
-const steps = ['Ponto de Entrega', 'Revisão', 'Detalhes do Pagamento']
+const steps = ['Ponto de Entrega', 'Detalhes do Pagamento']
 
 const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     const [activeStep, setActiveStep] = useState(0);
     const [checkoutToken, setCheckoutToken] = useState(null);
-    const [shippingData, setShippingData] = useState({})
+    const [shippingData, setShippingData] = useState({});
+    const [isFinished, setIsFinished] = useState(false);
     const classes = useStyles();
+    const Navigate = useNavigate();
 
     useEffect(() => {
         const generateToken = async () => {
@@ -23,6 +25,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
                 console.log(token);
                 setCheckoutToken(token);
             } catch (error) {
+                Navigate.pushState('/')
             }
         };
 
@@ -38,12 +41,35 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         nextStep();
     }
 
-
-    const Confirmation = () => (
-        <div>Confirmation</div>
-    )
+    const timeout =  () => {
+        setTimeout(() => {
+            setIsFinished(true)
+        }, 3000)
+    }
+    let Confirmation = () => order.costumer ? (
+        <>
+            <div>
+                <Typography variant='h5'>Obrigado por Allugar!, {order.costumer.firstname}</Typography>
+                <Divider className={classes.divider} />
+                <Typography variant='subtitle2'>Referência do pedido: {order.costumer_reference}</Typography>
+            </div>
+            <br/>
+            <Button component={Link} to='/' variant="outlined" type='button'>Voltar à tela inicial</Button>
+        </>
+    ) : isFinished ? (
+        <>
+        <Typography variant='h5'>Obrigado por Allugar!</Typography>
+        <Divider className={classes.divider}/>
+        <br/>
+        <Button component={Link} to='/' variant="outlined" type='button'>Voltar à tela inicial</Button>
+        </>
+    ) : (
+        <div className={classes.spinner}>
+            <CircularProgress />
+        </div>
+    );
     const Form = () => activeStep === 0
-        ? <DeliveryForm checkoutToken={checkoutToken} next={next} />
+        ? <DeliveryForm checkoutToken={checkoutToken} next={next} backStep={backStep} timeout={timeout} />
         : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} onCaptureCheckout={onCaptureCheckout} />
 
     return (
@@ -59,7 +85,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
                             </Step>
                         ))}
                     </Stepper>
-                    {activeStep == steps.length ? <Confirmation /> : <Form />}
+                    {activeStep === steps.length ? <Confirmation /> : <Form />}
                 </Paper>
             </main>
 
