@@ -1,18 +1,17 @@
 import React from 'react';
-import { Typography, Button, Card, CardActions, CardContent, CardMedia } from '@material-ui/core';
-import useStyles from './Styles';
+import { Typography, Button, Card, CardActions, CardContent, CardMedia } from '@mui/material';
+import styles from './Styles.css';
 
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
-    const classes = useStyles();
     return (
-        <Card className="cart-item">
-            <CardMedia image={item.image.url} alt={item.name} className={classes.media} />
-            <CardContent className={classes.cardContent}>
-                <Typography variant='h4'>{item.name}</Typography>
-                <Typography variant='h5'>{item.line_total.formatted_with_symbol}</Typography>
+        <Card className={styles.cardsl}>
+            <CardMedia image={item.image.url} alt={item.name} className={styles.cardimage} />
+            <CardContent>
+                <Typography className='card-heading' variant='h4'>{item.name}</Typography>
+                <Typography className='card-text' variant='h5'>{item.line_total.formatted_with_symbol}</Typography>
             </CardContent>
-            <CardActions className={classes.cardActions}>
-                <div className={classes.buttons}>
+            <CardActions className={styles.cardaction}>
+                <div className={styles.cardbutton}>
                     <Button type="button" size="small" onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}>-</Button>
                     <Typography>{item.quantity}</Typography>
                     <Button type="button" size="small" onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}>+</Button>

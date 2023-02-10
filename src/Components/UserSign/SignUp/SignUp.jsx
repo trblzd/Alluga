@@ -1,21 +1,20 @@
 import React from 'react';
-import { Grid, Paper, Avatar, TextField, Button, Typography, FormControl, FormControlLabel, FormLabel, Checkbox,} from '@material-ui/core'
-import useStyles from './Styles';
+import { Grid, Paper, Avatar, TextField, Button, Typography, FormControlLabel, Checkbox,} from '@mui/material'
+import styles from'./Styles.css';
 
 const SignUp = () => {
-    const classes = useStyles();
   return (
     <div>
-      <div className={classes.toolbar} />
+      <div className={styles.toolbar} />
         <Grid>
-          <Paper elevation={5} className={classes.paper}>
+          <Paper elevation={5} className={styles.paper}>
               <Grid>
-                <Avatar className={classes.avatar}>
+                <Avatar className={styles.avatar}>
                   </Avatar>  
-                  <h1 className={classes.header}>Criar Conta</h1>
+                  <h1 className={styles.header}>Criar Conta</h1>
                     <Typography variant='caption' gutterBottom>Insira seus dados para criar uma conta</Typography>
                 </Grid>
-                <form className={classes.form}>
+                <form className={styles.form}>
                     <TextField fullWidth label='Nome' placeholder="Insira seu nome" />
                     <TextField fullWidth label='Email' placeholder="Insira seu Email" />
                     <TextField fullWidth label='Telefone' placeholder="Insira seu telefone" />
@@ -24,9 +23,9 @@ const SignUp = () => {
                     <FormControlLabel
                         control={<Checkbox name="checkedA" />}
                         label="Aceito os termos e condições."
-                        className={classes.control}
+                        classes='control'
                     />
-                 <Button className={classes.button} type='submit' variant='contained' color='primary'>Criar Conta</Button>
+                 <Button className={styles.button} type='submit' variant='contained' color='primary'>Criar Conta</Button>
                 </form>
           </Paper>
         </Grid>

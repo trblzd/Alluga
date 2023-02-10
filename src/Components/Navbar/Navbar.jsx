@@ -1,23 +1,22 @@
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
-import { ShoppingCart, Person } from '@material-ui/icons';
+import { AppBar, Toolbar, IconButton, Badge, Typography } from '@mui/material';
+import ShoppingCart from '@mui/icons-material/ShoppingCart';
+import Person  from '@mui/icons-material/Person';
 import logo from "../../Assets/logo1.png";
-import useStyles from "./Styles";
 import { Link, useLocation } from 'react-router-dom';
+import'./Styles.css';
 
 const Navbar = ({ totalItems }) => {
-    const classes = useStyles();
     const location = useLocation();
     return (
-        <AppBar position="fixed" className={classes.appBar} color="inherit">
+        <AppBar position="fixed" class='appBar' color="inherit">
             <Toolbar>
-                <Typography component={Link} to="/" variant='h6' className={classes.title} color="inherit">
-                    <img src={logo} alt="AllugaLogo" width="90px" className={classes.image} />
+                <Typography component={Link} to="/" variant='h6' class='title' color="inherit">
+                    <img src={logo} alt="AllugaLogo" width="90px" class='image' />
                 </Typography>
-                <div className={classes.DivBar} />
-                <div className={classes.grow} />
+                <div class='grow' />
                 {location.pathname === '/' && (
-                    < div className={classes.button}>
+                    <div class='button'>
 
                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                             <Badge badgeContent={totalItems} color="secondary">

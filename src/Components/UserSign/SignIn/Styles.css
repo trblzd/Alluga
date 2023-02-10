@@ -1,0 +1,33 @@
+.appBar {
+  position: relative;
+}
+
+.layout {
+  margin-top: 5%;
+  width: auto;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+@media (min-width: 602px) {
+  .layout {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.paper {
+  padding: 2%;
+  height: 70vh;
+  width: 280px;
+  margin: 2% auto;
+}
+
+.avatar {
+  background: #9DCC6C;
+}
+
+.button {
+  margin: 8px 0;
+}

@@ -1,0 +1,73 @@
+.appBar {
+  background: #9DCC6C;
+  box-shadow: none;
+  border-bottom: 0px solid rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 600px) {
+  .appBar {
+    width: calc(100% - 0px);
+    margin-left: 0;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-grow: 1;
+}
+
+.image {
+  margin-right: 10px;
+}
+
+.menuButton {
+  margin-right: 16px;
+}
+
+@media (min-width: 600px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.search {
+  position: relative;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.search:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.searchIcon {
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.inputRoot {
+  color: inherit;
+}
+
+.inputInput {
+  padding: 8px 8px 8px 32px;
+  width: 100%;
+  transition: width 0.4s ease-in-out;
+}
+
+@media (min-width: 992px) {
+  .inputInput {
+    width: 20ch;
+  }
+}
