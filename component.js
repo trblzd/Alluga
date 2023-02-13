@@ -1,0 +1,9 @@
+import client from "./db";
+
+const query = "SELECT * FROM products";
+
+client.query(query, (err, res) => {
+  if (err) throw err;
+  const products = res.rows;
+  console.log(products);
+});

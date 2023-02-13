@@ -2,13 +2,13 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.cardimage media {
-  height: '0';
-  paddingTop: '56.25%';
-  marginTop:'30';
-/*  max-height: 100%;
+.cardimage img {
+  /*height: '0';
+  padding-Top: '56.25%';
+  margin-Top:'30';*/
+ max-height: 50%;
   max-width: 100%;
-  border-radius: 8px 8px 0px 0; */
+  border-radius: 8px 8px 0px 0;
 }
 
 .cardaction {
@@ -34,13 +34,14 @@
 .cardheading {
   font-size: 18px;
   font-weight: bold;
-  background: #fff;
   padding: 10px 15px;
+  text-decoration: none;
+  color: black;
 }
 
 .cardtext {
   padding: 10px 15px;
-  background: #fff;
+  
   font-size: 14px;
   color: #636262;
 }

@@ -5,7 +5,9 @@ import './Styles.css';
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
     return (
         <Card class='cardsl'>
-            <CardMedia image={item.image.url} alt={item.name} class='cardimage' />
+            <CardMedia class='cardimage'>
+                <img src={item.image.url} alt={item.name} />
+            </CardMedia>
             <CardContent>
                 <Typography class='card-heading' variant='h4'>{item.name}</Typography>
                 <Typography class='card-text' variant='h5'>{item.line_total.formatted_with_symbol}</Typography>
