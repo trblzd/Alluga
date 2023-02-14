@@ -54,7 +54,11 @@ const App = () => {
     fetchProducts();
     fetchCart();
   }, []);
+  const listProducts = async () => {
+    const { list } = await commerce.products.list();
 
+    setProducts(list);
+  };
   return (
     <>
       <Router>
