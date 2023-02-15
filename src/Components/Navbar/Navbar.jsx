@@ -1,13 +1,20 @@
-import React from "react";
-import { AppBar, Toolbar, IconButton, Badge, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { AppBar, Toolbar, IconButton, Badge, Typography, Menu, MenuItem } from "@mui/material";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import Person  from "@mui/icons-material/Person";
 import logo from "../../Assets/logo1.png";
 import { Link, useLocation } from "react-router-dom";
-import"./Styles.css";
+import "./Styles.css";
 
 const Navbar = ({ totalItems }) => {
     const location = useLocation();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const handleMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <AppBar position="fixed" class="appBar" color="inherit">
             <Toolbar>
@@ -17,19 +24,40 @@ const Navbar = ({ totalItems }) => {
                 <div class="grow" />
                 {location.pathname === "/" && (
                     <div class="button">
-
-                        <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+                        <IconButton
+                            aria-label="Show cart items"
+                            color="inherit"
+                            component={Link}
+                            to="/cart"
+                        >
                             <Badge badgeContent={totalItems} color="secondary">
                                 <ShoppingCart />
                             </Badge>
-                        </IconButton> 
-                        <IconButton component={Link} to="/signup" aria-label="Sign Up" color="inherit">
-                            <Person/>
                         </IconButton>
-                    </div>)}
+                        <IconButton
+                            aria-label="Sign Up"
+                            color="inherit"
+                            onClick={handleMenuOpen}
+                        >
+                            <Person />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                        >
+                            <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
+                                Criar Conta
+                            </MenuItem>
+                            <MenuItem component={Link} to="/signin" onClick={handleMenuClose}>
+                                Logar
+                            </MenuItem>
+                        </Menu>
+                    </div>
+                )}
             </Toolbar>
-        </AppBar >
-    )
-}
+        </AppBar>
+    );
+};
 
-export default Navbar
+export default Navbar;

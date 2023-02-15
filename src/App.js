@@ -17,6 +17,7 @@ const RemoveProduct = lazy(() =>
   import("./Components/Products/RemoveProduct/RemoveProduct")
 );
 const CartTest = lazy(() => import("./Components/Cart/CartTest"));
+const UserProfile = lazy(() => import("./Components/User/UserProfile"));
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -54,11 +55,6 @@ const App = () => {
     fetchProducts();
     fetchCart();
   }, []);
-  const listProducts = async () => {
-    const { list } = await commerce.products.list();
-
-    setProducts(list);
-  };
   return (
     <>
       <Router>
@@ -110,6 +106,8 @@ const App = () => {
 
               <Route path="/SignUp" element={<SignUp />} />
               <Route path="/SignIn" element={<SignIn />} />
+
+              <Route path="/UserProfile" element={<UserProfile />} />
             </Routes>
           </Suspense>
         </div>

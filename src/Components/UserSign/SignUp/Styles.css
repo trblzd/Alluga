@@ -1,50 +1,38 @@
 .toolbar {
-  height: 56px;
   display: flex;
   align-items: center;
-  background-color: #3f51b5;
-  color: #fff;
-  padding: 0 16px;
-}
-
-.appBar {
-  position: relative;
-}
-
-.layout {
-  margin-top: 5%;
-  width: auto;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-@media (min-width: 602px) {
-  .layout {
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-.form {
-  margin-left: 70%;
-  margin-right: 10%;
+  justify-content: flex-start;
+  padding: 8px;
 }
 
 .paper {
-  padding: 3% 1%;
+  padding: 10% 1%;
   width: 20%;
   margin: 1% auto;
 }
 
 .header {
-  margin: 0;
+  margin: 0; 
+  font-weight: bolder;
+  font-size: 50px
 }
-
-.avatar {
-  background: #9DCC6C;
-}
-
 .button {
   background: #9DCC6C;
+  border: 0px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  appearance: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+
 }
+.button:hover {
+  background: #89b858;
+}
+
+ .form > * {
+  justify-content: center;
+  align-items: left;
+ }
