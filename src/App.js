@@ -16,7 +16,6 @@ const AddProduct = lazy(() =>
 const RemoveProduct = lazy(() =>
   import("./Components/Products/RemoveProduct/RemoveProduct")
 );
-const CartTest = lazy(() => import("./Components/Cart/CartTest"));
 const UserProfile = lazy(() => import("./Components/User/UserProfile"));
 
 const App = () => {
@@ -79,18 +78,6 @@ const App = () => {
                 path="/Cart"
                 element={
                   <Cart
-                    cart={cart}
-                    handleUpdateCartQty={handleUpdateCartQty}
-                    handleEmptyCart={handleEmptyCart}
-                    handleRemoveFromCart={handleRemoveFromCart}
-                  />
-                }
-              />
-
-              <Route
-                path="/CartTest"
-                element={
-                  <CartTest
                     cart={cart}
                     handleUpdateCartQty={handleUpdateCartQty}
                     handleEmptyCart={handleEmptyCart}

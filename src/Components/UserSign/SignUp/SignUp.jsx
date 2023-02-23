@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Grid, Paper, TextField, Button, FormHelperText } from '@mui/material';
 import './Styles.css';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+//import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../../firebase';
 
-
+//const auth = getAuth();
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,6 +13,7 @@ const SignUp = () => {
   const [emailError, setEmailError] = useState(false); 
   const [errorMessage, setErrorMessage] = useState('');
 
+  /*
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
@@ -20,19 +21,33 @@ const SignUp = () => {
       setErrorMessage('Insira um email válido.');
       return;
     }
-    auth.createUserWithEmailAndPassword(email, password)
+    */
+   /*auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        window.location.href = '/UserProfile';
+        console.log(auth.currentUser.uid)
+       // window.location.href = '/UserProfile';
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
-  };
-
+*/
+const Sign =(e)=> {
+auth.createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(auth.currentUser.uid)
+    console.log(userCredential)
+    // ...
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+}
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     if (!/\S+@\S+\.\S+/.test(e.target.value)) {
@@ -53,7 +68,7 @@ const SignUp = () => {
             <h1 class='header'>Criar Conta</h1>
             <br />
           </Grid>
-          <form class='form' onSubmit={handleSubmit}>
+          <form class='form' onSubmit={Sign}>
             <TextField
               fullWidth
               label='Nome'

@@ -1,4 +1,4 @@
-import client from "./firebase";
+import client from "./src/firebase";
 
 const query = "SELECT * FROM products";
 
