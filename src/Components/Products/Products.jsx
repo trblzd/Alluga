@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import Product from './Product/Product';
-import './Styles.css';
+import './Products.css';
 
 const Products = ({ products, onAddToCart }) => {
     return (

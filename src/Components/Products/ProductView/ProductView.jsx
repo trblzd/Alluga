@@ -1,5 +1,5 @@
 import React from 'react'
-import './Styles.css'
+import './ProductView.css'
 import {Typography, Grid, ImageList} from '@mui/material'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";

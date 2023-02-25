@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@mui/material';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
-import './Styles.css';
+import './Product.css';
 import { Link } from 'react-router-dom'
 
 const Product = ({ product, onAddToCart }) => {

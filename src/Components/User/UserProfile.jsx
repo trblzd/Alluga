@@ -1,52 +1,107 @@
-import React from 'react';
-import { Button, Container, Grid, Link, Paper, TextField, Typography } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import { TextField, Button } from "@mui/material";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+const UserProfile = ({ user }) => {
+  const [userData, setUserData] = useState(user.data());
 
-const UserProfile = () => {
+  const handleNameChange = (event) => {
+    setUserData({ ...userData, name: event.target.value });
+  };
+
+  const handlePasswordChange = (event) => {
+    setUserData({ ...userData, password: event.target.value });
+  };
+
+  const handlePhoneChange = (event) => {
+    setUserData({ ...userData, phone: event.target.value });
+  };
+
+  const handleEmailChange = (event) => {
+    setUserData({ ...userData, email: event.target.value });
+  };
+
+  const handleCpfChange = (event) => {
+    setUserData({ ...userData, cpf: event.target.value });
+  };
+
+  const handleSubmit = () => {
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(user.uid)
+      .update(userData)
+      .then(() => {
+        console.log("User data updated successfully!");
+      })
+      .catch((error) => {
+        console.error("Error updating user data: ", error);
+      });
+  };
+
   return (
-    <Container maxWidth="md">
-      <Paper elevation={3} sx={{ p: 2, my: 3 }}>
-        <Typography variant="h4" mb={2}>User Profile</Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Name" fullWidth />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField label="Email" fullWidth />
-          </Grid>
-          <Grid item xs={12}>
-            <Button variant="contained" color="primary" mr={2}>Save Changes</Button>
-            <Button variant="outlined" mr={2}>Change Password</Button>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Paper elevation={3} sx={{ p: 2, my: 3 }}>
-        <Typography variant="h4" mb={2}>My Products</Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Button variant="contained" color="primary" component={Link} to="/products/new">Add Product</Button>
-          </Grid>
-          {/* Replace with your own implementation */}
-          <Grid item xs={12} sm={6}>
-            <Paper sx={{ p: 2, my: 1 }}>
-              <Typography variant="h6" mb={1}>Product 1</Typography>
-              <Typography variant="body1" mb={1}>Description of product 1</Typography>
-              <Button variant="contained" color="primary" mr={2}>Edit</Button>
-              <Button variant="outlined" color="error">Remove</Button>
-            </Paper>
-          </Grid>
-          {/* Replace with your own implementation */}
-          <Grid item xs={12} sm={6}>
-            <Paper sx={{ p: 2, my: 1 }}>
-              <Typography variant="h6" mb={1}>Product 2</Typography>
-              <Typography variant="body1" mb={1}>Description of product 2</Typography>
-              <Button variant="contained" color="primary" mr={2}>Edit</Button>
-              <Button variant="outlined" color="error">Remove</Button>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Container>
+    <div>
+      <TextField
+        label="Name"
+        value={userData.name}
+        onChange={handleNameChange}
+      />
+      <TextField
+        label="Password"
+        value={userData.password}
+        type="password"
+        onChange={handlePasswordChange}
+      />
+      <TextField
+        label="Phone"
+        value={userData.phone}
+        onChange={handlePhoneChange}
+      />
+      <TextField
+        label="Email"
+        value={userData.email}
+        onChange={handleEmailChange}
+      />
+      <TextField label="CPF" value={userData.cpf} onChange={handleCpfChange} />
+      <Button variant="contained" onClick={handleSubmit}>
+        Save
+      </Button>
+    </div>
   );
 };
 
-export default UserProfile;
+const UserProfilePage = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <div>
+      {user ? (
+        <div>
+          <h1>User Profile</h1>
+          <UserProfile user={user} />
+        </div>
+      ) : (
+        <div>
+          <h1>Please sign in to view your profile.</h1>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default UserProfilePage;

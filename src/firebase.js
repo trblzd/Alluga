@@ -1,12 +1,9 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-
 import { initializeApp } from "firebase/app";
 
-// import { getAnalytics } from "firebase/analytics";
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBbWUDv2iCFR5-TrF3a3Ao7k3olxXdQX8o",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "alluga-d3c0f.firebaseapp.com",
   projectId: "alluga-d3c0f",
   storageBucket: "alluga-d3c0f.appspot.com",

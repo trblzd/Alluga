@@ -1,40 +1,15 @@
 import React, { useState } from 'react';
 import { Grid, Paper, TextField, Button, FormHelperText } from '@mui/material';
-import './Styles.css';
-//import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import './CreateAccount.css';
 import { auth } from '../../../firebase';
 
-//const auth = getAuth();
 const SignUp = () => {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false); 
   const [errorMessage, setErrorMessage] = useState('');
 
-  /*
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      setEmailError(true);
-      setErrorMessage('Insira um email válido.');
-      return;
-    }
-    */
-   /*auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(auth.currentUser.uid)
-       // window.location.href = '/UserProfile';
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
-*/
+
 const Sign =(e)=> {
 auth.createUserWithEmailAndPassword(email, password)
   .then((userCredential) => {
@@ -69,13 +44,7 @@ auth.createUserWithEmailAndPassword(email, password)
             <br />
           </Grid>
           <form class='form' onSubmit={Sign}>
-            <TextField
-              fullWidth
-              label='Nome'
-              placeholder="Insira seu nome"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            
             <br />
             <br />
             <TextField
@@ -89,15 +58,6 @@ auth.createUserWithEmailAndPassword(email, password)
               type='email'
             />
             {errorMessage && <FormHelperText error>{errorMessage}</FormHelperText>}
-            <br />
-            <br />
-            <TextField
-              fullWidth
-              label='Telefone'
-              placeholder="Insira seu telefone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
             <br />
             <br />
             <TextField

@@ -9,14 +9,6 @@
   margin-right: 2%;
 }
 
-@media (min-width: 602px) {
-  .layout {
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 .paper {
   padding: 2%;
   height: 70vh;
@@ -24,10 +16,8 @@
   margin: 2% auto;
 }
 
-.avatar {
-  background: #9DCC6C;
-}
-
-.button {
-  margin: 8px 0;
+.buttonLogin {
+  background-color: red ;
+  color: black;
+  border: 2px solid #4CAF50;
 }

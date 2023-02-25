@@ -8,13 +8,9 @@ const Cart = lazy(() => import("./Components/Cart/Cart"));
 const ProductView = lazy(() =>
   import("./Components/Products/ProductView/ProductView")
 );
-const SignIn = lazy(() => import("./Components/UserSign/SignIn/SignIn"));
-const SignUp = lazy(() => import("./Components/UserSign/SignUp/SignUp"));
-const AddProduct = lazy(() =>
-  import("./Components/Products/AddProduct/AddProduct")
-);
-const RemoveProduct = lazy(() =>
-  import("./Components/Products/RemoveProduct/RemoveProduct")
+const Login = lazy(() => import("./Components/UserSign/Login/Login"));
+const CreateAccount = lazy(() =>
+  import("./Components/UserSign/CreateAccount/CreateAccount")
 );
 const UserProfile = lazy(() => import("./Components/User/UserProfile"));
 
@@ -75,7 +71,7 @@ const App = () => {
               />
 
               <Route
-                path="/Cart"
+                path="/Carrinho"
                 element={
                   <Cart
                     cart={cart}
@@ -88,13 +84,10 @@ const App = () => {
 
               <Route path="/product-view/:id" element={<ProductView />} />
 
-              <Route path="AddProduct" element={<AddProduct />} />
-              <Route path="RemoveProduct" element={<RemoveProduct />} />
+              <Route path="/CriarConta" element={<CreateAccount />} />
+              <Route path="/Login" element={<Login />} />
 
-              <Route path="/SignUp" element={<SignUp />} />
-              <Route path="/SignIn" element={<SignIn />} />
-
-              <Route path="/UserProfile" element={<UserProfile />} />
+              <Route path="/Perfil" element={<UserProfile />} />
             </Routes>
           </Suspense>
         </div>
