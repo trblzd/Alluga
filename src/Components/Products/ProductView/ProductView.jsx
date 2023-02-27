@@ -22,11 +22,11 @@ const ProductView = () => {
     }
   }
   return (
-    <div>
+    <div clas='container'>
       {product ? (
         <Grid container spacing={3}>
-          <Grid item xs={4}>
-          <img src={product.image.url} alt={product.name}/>
+          <Grid item xs={4} >
+          <img src={product.image.url} class='image' alt={product.name}/>
           </Grid>
           <Grid item xs={8}>
             <Typography  variant="h5">
@@ -35,9 +35,8 @@ const ProductView = () => {
             <Typography variant="body1">
               Price: {product.price.formatted_with_symbol}
             </Typography>
-            <Typography variant="body2">
-              Description: {product.description}
-            </Typography>
+
+           <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant='body2' />
           </Grid>
         </Grid>
       ) : (

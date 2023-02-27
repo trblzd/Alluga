@@ -21,8 +21,8 @@
   flex-grow: 1;
 }
 
-.image {
-  margin-right: 10px;
+.imagelogo {
+  width: 200px;
 }
 
 .menuButton {

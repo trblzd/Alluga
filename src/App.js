@@ -1,6 +1,12 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense, useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 import { commerce } from "./lib/commerce";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 const Navbar = lazy(() => import("./Components/Navbar/Navbar"));
 const Products = lazy(() => import("./Components/Products/Products"));
@@ -32,11 +38,6 @@ const App = () => {
     setCart(item);
   };
 
-  const handleUpdateCartQty = async (productId, quantity) => {
-    const item = await commerce.cart.update(productId, { quantity });
-    setCart(item);
-  };
-
   const handleRemoveFromCart = async (productId) => {
     const item = await commerce.cart.remove(productId);
     setCart(item);
@@ -50,6 +51,13 @@ const App = () => {
     fetchProducts();
     fetchCart();
   }, []);
+
+  const { currentUser } = useContext(AuthContext);
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/Login" />;
+  };
+
   return (
     <>
       <Router>
@@ -59,35 +67,45 @@ const App = () => {
           />
           <Suspense fallback={<h1>Carregando...</h1>}>
             <Routes>
+              <Route path="/Login" element={<Login />} />
               <Route
                 path=""
                 element={
-                  <Products
-                    products={products}
-                    onAddToCart={handleAddToCart}
-                    handleUpdateCartQty
-                  />
+                  <RequireAuth>
+                    <Products
+                      products={products}
+                      onAddToCart={handleAddToCart}
+                      handleUpdateCartQty
+                    />
+                  </RequireAuth>
                 }
               />
 
               <Route
                 path="/Carrinho"
                 element={
-                  <Cart
-                    cart={cart}
-                    handleUpdateCartQty={handleUpdateCartQty}
-                    handleEmptyCart={handleEmptyCart}
-                    handleRemoveFromCart={handleRemoveFromCart}
-                  />
+                  <RequireAuth>
+                    <Cart
+                      cart={cart}
+                      handleEmptyCart={handleEmptyCart}
+                      handleRemoveFromCart={handleRemoveFromCart}
+                    />
+                  </RequireAuth>
                 }
               />
 
               <Route path="/product-view/:id" element={<ProductView />} />
 
               <Route path="/CriarConta" element={<CreateAccount />} />
-              <Route path="/Login" element={<Login />} />
 
-              <Route path="/Perfil" element={<UserProfile />} />
+              <Route
+                path="/Perfil"
+                element={
+                  <RequireAuth>
+                    <UserProfile />
+                  </RequireAuth>
+                }
+              />
             </Routes>
           </Suspense>
         </div>

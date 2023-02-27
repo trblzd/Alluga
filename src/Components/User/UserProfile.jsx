@@ -1,107 +1,135 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db, auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import './UserProfile.css'
+
 const UserProfile = ({ user }) => {
-  const [userData, setUserData] = useState(user.data());
+  const [isEditing, setIsEditing] = useState(false);
+  const [data, setData] = useState({
+  });
 
-  const handleNameChange = (event) => {
-    setUserData({ ...userData, name: event.target.value });
-  };
-
-  const handlePasswordChange = (event) => {
-    setUserData({ ...userData, password: event.target.value });
-  };
-
-  const handlePhoneChange = (event) => {
-    setUserData({ ...userData, phone: event.target.value });
-  };
-
-  const handleEmailChange = (event) => {
-    setUserData({ ...userData, email: event.target.value });
-  };
-
-  const handleCpfChange = (event) => {
-    setUserData({ ...userData, cpf: event.target.value });
-  };
-
-  const handleSubmit = () => {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(user.uid)
-      .update(userData)
-      .then(() => {
-        console.log("User data updated successfully!");
-      })
-      .catch((error) => {
-        console.error("Error updating user data: ", error);
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    if (!data.Nome || !data.Telefone || !data.CPF || !data.RG) {
+      alert('Preencha todos os campos.');
+      return;
+    }
+    try {
+      const res = await signInWithEmailAndPassword(
+        auth, data.email, data.password
+      )
+      await addDoc(collection(db, "usuariodados", res.user.uid), {
+        ...data,
+        userId: user.uid,
+        createdAt: serverTimestamp(),
       });
+      setIsEditing(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  return (
-    <div>
-      <TextField
-        label="Name"
-        value={userData.name}
-        onChange={handleNameChange}
-      />
-      <TextField
-        label="Password"
-        value={userData.password}
-        type="password"
-        onChange={handlePasswordChange}
-      />
-      <TextField
-        label="Phone"
-        value={userData.phone}
-        onChange={handlePhoneChange}
-      />
-      <TextField
-        label="Email"
-        value={userData.email}
-        onChange={handleEmailChange}
-      />
-      <TextField label="CPF" value={userData.cpf} onChange={handleCpfChange} />
-      <Button variant="contained" onClick={handleSubmit}>
-        Save
-      </Button>
-    </div>
-  );
-};
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
 
-const UserProfilePage = () => {
-  const [user, setUser] = useState(null);
+  const handleSave = (e) => {
+    e.preventDefault();
+    handleAdd(e);
+  };
 
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
+  const handleCancel = () => {
+    setIsEditing(false);
+    setData({
+      Nome: '',
+      Telefone: '',
+      CPF: '',
+      RG: '',
     });
+  };
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  const handleChange = (e) => {
+    setData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-  return (
-    <div>
-      {user ? (
-        <div>
-          <h1>User Profile</h1>
-          <UserProfile user={user} />
-        </div>
-      ) : (
-        <div>
-          <h1>Please sign in to view your profile.</h1>
-        </div>
-      )}
+return (
+    <div className="user-profile">
+      <TextField
+        require
+        className="user-profile__input"
+        type="text"
+        label="Nome"
+        name="Nome"
+        value={data.Nome}
+        disabled={!isEditing}
+        onChange={handleChange}
+      />
+      <TextField
+        require
+        className="user-profile__input"
+        type="number"
+        label="Celular"
+        name="Telefone"
+        value={data.Telefone}
+        disabled={!isEditing}
+        onChange={handleChange}
+      />
+      <TextField
+        require
+        className="user-profile__input"
+        type="text"
+        label="CPF"
+        name="CPF"
+        value={data.CPF}
+        disabled={!isEditing}
+        onChange={handleChange}
+      />
+      <TextField
+        require
+        className="user-profile__input"
+        type="number"
+        label="RG"
+        name="RG"
+        value={data.RG}
+        disabled={!isEditing}
+        onChange={handleChange}
+      />
+      <div className="user-profile__button-container">
+        {isEditing ? (
+          <>
+            <Button
+              className="user-profile__button"
+              type="submit"
+              variant="outlined"
+              onClick={handleSave}
+            >
+              Save
+            </Button>
+            <Button
+              className="user-profile__button"
+              variant="outlined"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          </>
+        ) : (
+          <Button
+            className="user-profile__button"
+            variant="outlined"
+            onClick={handleEdit}
+          >
+            Edit
+          </Button>
+        )}
+      </div>
     </div>
   );
 };
 
-export default UserProfilePage;
+export default UserProfile; 

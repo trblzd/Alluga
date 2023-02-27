@@ -10,7 +10,7 @@ const Product = ({ product, onAddToCart }) => {
             <CardMedia class='cardimage' title={product.name} component={Link} to={`product-view/${product.id}`}>
                 <img src={product.image.url} alt={product.name}/>
             </CardMedia>
-                <CardActions disableSpacing class='cardaction'>
+                <CardActions disableSpacing class='cardactionpro'>
                 <IconButton aria-label='Add to Cart' onClick={() => onAddToCart(product.id, 1)}>
                     <AddShoppingCart />
                 </IconButton>

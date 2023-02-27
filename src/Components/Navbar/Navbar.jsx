@@ -5,8 +5,10 @@ import Person  from "@mui/icons-material/Person";
 import logo from "../../Assets/logo1.png";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import {signOut } from "firebase/auth";
+import { auth } from '../../firebase';
 
-const Navbar = ({ totalItems }) => {
+const Navbar = ({ totalItems, product }) => {
     const location = useLocation();
     const [anchorEl, setAnchorEl] = useState(null);
     const handleMenuOpen = (event) => {
@@ -15,14 +17,28 @@ const Navbar = ({ totalItems }) => {
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
+
+    const handleSignOut = () => {
+        signOut(auth).then(() => {
+        })  
+    .catch((error) => {
+    console.log(error)
+    });
+    }
+    function MenuSignOut (){
+        handleSignOut();
+        handleMenuClose();
+    }
+
+
     return (
         <AppBar position="fixed" class="appBar" color="inherit">
             <Toolbar>
                 <Typography component={Link} to="/" variant="h6" class="title" color="inherit">
-                    <img src={logo} alt="AllugaLogo" width="90px" class="image"/>
+                    <img src={logo} alt="AllugaLogo" width="90px" class="imagelogo"/>
                 </Typography>
                 <div class="grow" />
-                {location.pathname === "/" && (
+                {(location.pathname === '/' || location.pathname.startsWith('/product-view/')) && (
                     <div class="button">
                         <IconButton
                             aria-label="Show cart items"
@@ -46,11 +62,11 @@ const Navbar = ({ totalItems }) => {
                             open={Boolean(anchorEl)}
                             onClose={handleMenuClose}
                         >
-                            <MenuItem component={Link} to="/CriarConta" onClick={handleMenuClose}>
-                                Criar Conta
+                            <MenuItem component={Link} to="/Perfil" onClick={handleMenuClose}>
+                                Perfil
                             </MenuItem>
-                            <MenuItem component={Link} to="/Login" onClick={handleMenuClose}>
-                                Logar
+                            <MenuItem onClick={MenuSignOut}>
+                               Sair da Conta
                             </MenuItem>
                         </Menu>
                     </div>

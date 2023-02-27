@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Paper, TextField, Button, FormHelperText } from '@mui/material';
 import './CreateAccount.css';
+import { useNavigate  } from 'react-router-dom'
 import { auth } from '../../../firebase';
 
 const SignUp = () => {
@@ -10,19 +11,24 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
 
-const Sign =(e)=> {
-auth.createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(auth.currentUser.uid)
-    console.log(userCredential)
-    // ...
-  })
-  .catch((error) => {
-    console.log(error)
-  });
-}
+  const history = useNavigate();
+
+  const Sign = (e) => {
+    e.preventDefault();
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(auth.currentUser.uid)
+        console.log(userCredential)
+        // Navigate to the main page
+        history.push('/');
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+  
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     if (!/\S+@\S+\.\S+/.test(e.target.value)) {

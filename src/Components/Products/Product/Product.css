@@ -13,7 +13,7 @@
 }
 
 
-.cardaction {
+.cardactionpro {
   position: relative;
   float: right;
   margin-top: -25px;
@@ -34,7 +34,8 @@
 }
 
 .cardheading {
-  font-size: 18px;
+  font-family: "Bebas Neue";
+  font-size: 1.8rem;
   font-weight: bold;
   padding: 10px 15px;
   text-decoration: none;

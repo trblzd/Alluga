@@ -1,0 +1,26 @@
+.user-profile {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-profile__input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .user-profile__button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .user-profile__button {
+    flex: 1;
+    margin-right: 10px;
+  }
+  

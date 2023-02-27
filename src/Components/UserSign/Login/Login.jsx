@@ -1,13 +1,23 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState,useContext, useEffect} from 'react'
 import { TextField, Button, Typography} from '@mui/material'
 import './Login.css'
+import { Link } from 'react-router-dom'
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext'
+
+
+
 
 const Login=()=>{    
     const [error, setError] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {dispatch} = useContext(AuthContext)
+
+    const navigate = useNavigate();
+
     const handleLogin = (e) => {
         e.preventDefault();
 
@@ -15,7 +25,8 @@ const Login=()=>{
         .then((userCredential) => {
           //signedIn
           const user = userCredential.user;
-          console.log(user);
+          dispatch({type: "LOGIN", payload: user})
+          navigate('/Perfil');
         })
         .catch((error) => {
           setError(true);
@@ -38,11 +49,14 @@ const Login=()=>{
             type="password"
             onChange={e=>setPassword(e.target.value)}
           />
-          <Button type='submit' variant="contained" color="primary" class="button" onClick={0}>
+          <Button type='submit' variant="contained" color="primary" class="button">
             Login
           </Button>
+          <Button type='button' variant="contained" color="primary" class="button" component={Link} to={'/CriarConta'} >
+            Criar Conta
+          </Button>
           <Typography align="center">   
-            <a href="#">Esqueci minha senha</a>
+            Esqueci minha Senha
           </Typography>
         </form>
       );
