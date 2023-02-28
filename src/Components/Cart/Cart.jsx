@@ -25,7 +25,7 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
                 </Typography>
                 <div>
                     <Button class='emptyButton' size='large' type='button' variant='contained'onClick={handleEmptyCart}>Esvaziar Carrinho</Button>
-                    <Button component={Link} to='/review' class='checkoutButton' size='large' type='button' variant='contained'>Concluir Aluguel</Button>
+                    <Button component={Link} to='/Checkout' class='checkoutButton' size='large' type='button' variant='contained'>Concluir Aluguel</Button>
                 </div>
             </div>
         </>

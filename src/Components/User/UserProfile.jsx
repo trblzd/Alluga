@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button } from "@mui/material";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, getDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "../../firebase";
 import './UserProfile.css'
+import { AuthContext } from '../../context/AuthContext'
 
 const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const docRef = doc(db, "cities", "SF");
+  const docSnap = await getDoc(docRef);
+
   const [data, setData] = useState({
     Nome: '',
     Telefone: '',
     CPF: '',
     RG: '',
   });
+
+  const {currentUser} = useContext(AuthContext)
+  console.log(currentUser)
 
   const handleAdd = async (e) => {
     e.preventDefault();
@@ -20,7 +27,7 @@ const UserProfile = () => {
       return;
     }
     try {
-      await addDoc(collection(db, "usuariodados"), {
+      await setDoc(doc(collection(db, "usuariodados"), currentUser.uid), {
         ...data,
         createdAt: serverTimestamp(),
       });
