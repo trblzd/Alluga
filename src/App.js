@@ -11,9 +11,6 @@ import {
 const Navbar = lazy(() => import("./Components/Navbar/Navbar"));
 const Products = lazy(() => import("./Components/Products/Products"));
 const Cart = lazy(() => import("./Components/Cart/Cart"));
-const ProductView = lazy(() =>
-  import("./Components/Products/ProductView/ProductView")
-);
 const Login = lazy(() => import("./Components/UserSign/Login/Login"));
 const CreateAccount = lazy(() =>
   import("./Components/UserSign/CreateAccount/CreateAccount")
@@ -44,8 +41,8 @@ const App = () => {
   };
 
   const handleEmptyCart = async () => {
-    const { cart } = await commerce.cart.empty();
-    setCart(cart);
+    const item = await commerce.cart.empty();
+    setCart(item);
   };
   useEffect(() => {
     fetchProducts();
@@ -93,8 +90,6 @@ const App = () => {
                   </RequireAuth>
                 }
               />
-
-              <Route path="/product-view/:id" element={<ProductView />} />
 
               <Route path="/CriarConta" element={<CreateAccount />} />
 

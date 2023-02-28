@@ -13,6 +13,7 @@ const CartItem = ({ item, onRemoveFromCart }) => {
                 <Typography class='card-text' variant='h5'>{item.line_total.formatted_with_symbol}</Typography>
             </CardContent>
             <CardActions class='cardaction'>
+            <Typography class='card-text' id='quantity'>Quantidade: {item.quantity}</Typography><br/>
                 <Button variant='contained' type="button" color='secondary' onClick={() => onRemoveFromCart(item.id)}>Remover</Button>
             </CardActions>
         </Card>

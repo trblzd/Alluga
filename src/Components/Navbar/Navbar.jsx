@@ -5,10 +5,9 @@ import Person  from "@mui/icons-material/Person";
 import logo from "../../Assets/logo1.png";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import {signOut } from "firebase/auth";
 import { auth } from '../../firebase';
 
-const Navbar = ({ totalItems, product }) => {
+const Navbar = ({ totalItems, props: HomePageProps }) => {
     const location = useLocation();
     const [anchorEl, setAnchorEl] = useState(null);
     const handleMenuOpen = (event) => {
@@ -19,12 +18,9 @@ const Navbar = ({ totalItems, product }) => {
     };
 
     const handleSignOut = () => {
-        signOut(auth).then(() => {
-        })  
-    .catch((error) => {
-    console.log(error)
-    });
-    }
+        console.log('aaaaaa')
+    };
+    
     function MenuSignOut (){
         handleSignOut();
         handleMenuClose();
@@ -34,8 +30,8 @@ const Navbar = ({ totalItems, product }) => {
     return (
         <AppBar position="fixed" class="appBar" color="inherit">
             <Toolbar>
-                <Typography component={Link} to="/" variant="h6" class="title" color="inherit">
-                    <img src={logo} alt="AllugaLogo" width="90px" class="imagelogo"/>
+                <Typography component={Link} to="/" variant="h6" class="al-logo" color="inherit">
+                    <img src={logo} alt="AllugaLogo" class="imagelogo"/>
                 </Typography>
                 <div class="grow" />
                 {(location.pathname === '/' || location.pathname.startsWith('/product-view/')) && (

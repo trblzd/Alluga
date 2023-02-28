@@ -17,11 +17,7 @@ const SignUp = () => {
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
-        console.log(auth.currentUser.uid)
-        console.log(userCredential)
-        // Navigate to the main page
         history.push('/');
       })
       .catch((error) => {

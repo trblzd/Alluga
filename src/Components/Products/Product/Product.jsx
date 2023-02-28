@@ -2,12 +2,11 @@ import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@mui/material';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 import './Product.css';
-import { Link } from 'react-router-dom'
 
 const Product = ({ product, onAddToCart }) => {
     return (
         <Card class='cardsl'>
-            <CardMedia class='cardimage' title={product.name} component={Link} to={`product-view/${product.id}`}>
+            <CardMedia class='cardimagehome' title={product.name}>
                 <img src={product.image.url} alt={product.name}/>
             </CardMedia>
                 <CardActions disableSpacing class='cardactionpro'>
@@ -16,7 +15,7 @@ const Product = ({ product, onAddToCart }) => {
                 </IconButton>
             </CardActions>
             <CardContent>
-                    <Typography variant='h5' gutterBottom class='cardheading' component={Link} to={`product-view/${product.id}`}>{product.name}</Typography>
+                    <Typography variant='h5' gutterBottom class='cardheading'>{product.name}</Typography>
                     <Typography class='cardtext' dangerouslySetInnerHTML={{ __html: product.description }} variant='body2' color='textSecondary' />
                     <Typography variant='h5' class='cardtext'>{product.price.formatted_with_symbol}/Dia</Typography>
 

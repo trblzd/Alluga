@@ -14,7 +14,7 @@
   color: #C7002F;
 }
 
-.title {
+.al-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -23,6 +23,7 @@
 
 .imagelogo {
   width: 200px;
+  position: absolute;
 }
 
 .menuButton {

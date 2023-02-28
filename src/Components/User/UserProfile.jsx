@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import './UserProfile.css'
 
-const UserProfile = ({ user }) => {
+const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [data, setData] = useState({
+    Nome: '',
+    Telefone: '',
+    CPF: '',
+    RG: '',
   });
 
   const handleAdd = async (e) => {
@@ -17,12 +20,8 @@ const UserProfile = ({ user }) => {
       return;
     }
     try {
-      const res = await signInWithEmailAndPassword(
-        auth, data.email, data.password
-      )
-      await addDoc(collection(db, "usuariodados", res.user.uid), {
+      await addDoc(collection(db, "usuariodados"), {
         ...data,
-        userId: user.uid,
         createdAt: serverTimestamp(),
       });
       setIsEditing(false);
@@ -57,10 +56,9 @@ const UserProfile = ({ user }) => {
     }));
   };
 
-return (
+  return (
     <div className="user-profile">
       <TextField
-        require
         className="user-profile__input"
         type="text"
         label="Nome"
@@ -70,7 +68,6 @@ return (
         onChange={handleChange}
       />
       <TextField
-        require
         className="user-profile__input"
         type="number"
         label="Celular"
@@ -80,7 +77,6 @@ return (
         onChange={handleChange}
       />
       <TextField
-        require
         className="user-profile__input"
         type="text"
         label="CPF"
@@ -90,7 +86,6 @@ return (
         onChange={handleChange}
       />
       <TextField
-        require
         className="user-profile__input"
         type="number"
         label="RG"
@@ -100,36 +95,36 @@ return (
         onChange={handleChange}
       />
       <div className="user-profile__button-container">
-        {isEditing ? (
-          <>
+      {isEditing ? (
+        <>
             <Button
               className="user-profile__button"
               type="submit"
               variant="outlined"
               onClick={handleSave}
             >
-              Save
-            </Button>
+            Save
+          </Button>
             <Button
               className="user-profile__button"
               variant="outlined"
               onClick={handleCancel}
             >
-              Cancel
-            </Button>
-          </>
-        ) : (
+            Cancel
+          </Button>
+        </>
+      ) : (
           <Button
             className="user-profile__button"
             variant="outlined"
             onClick={handleEdit}
           >
-            Edit
-          </Button>
-        )}
+          Edit
+        </Button>
+      )}
       </div>
     </div>
   );
 };
 
-export default UserProfile; 
+export default UserProfile;

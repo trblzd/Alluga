@@ -9,6 +9,7 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
         <Typography variant="subtitle1">Você não tem itens no seu carrinho, <Link to='/' className='link'>Adicione alguns!</Link>
         </Typography>
     );
+    if (!cart.line_items) return 'Carregando...';
     const FilledCart = () => (
         <>
             <Grid container spacing={3}>
@@ -30,12 +31,11 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
         </>
     )
 
-    if (!cart.line_items) return 'Carregando...';
     return (
         <Container>
             <div class='toolbar' />
             <Typography class='title' gutterBottom>Seu Carrinho</Typography> <br/>
-            {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
+            {!cart.line_items?.length ? <EmptyCart /> : <FilledCart />}
         </Container>
     )
 }

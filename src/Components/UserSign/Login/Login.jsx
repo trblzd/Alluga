@@ -1,4 +1,4 @@
-import React, {useState,useContext, useEffect} from 'react'
+import React, {useState,useContext} from 'react'
 import { TextField, Button, Typography} from '@mui/material'
 import './Login.css'
 import { Link } from 'react-router-dom'
@@ -29,7 +29,7 @@ const Login=()=>{
           navigate('/Perfil');
         })
         .catch((error) => {
-          setError(true);
+          setError(error);
           })
 
     };

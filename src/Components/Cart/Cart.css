@@ -1,9 +1,9 @@
 .toolbar {
-  height: 60px;
+  height: 0rem;
 }
 
 .title {
-  margin: 12px 0;
+  margin: 1rem 0 1rem 0 ;
   font-family: "Bebas Neue", cursive;
   font-size: 2.4rem;
   letter-spacing: 0.06em;
@@ -31,12 +31,12 @@
 }
 
 .emptyButton {
-  margin-right: 20px;
-  padding: 8px;
+  margin-right: 2rem;
+  padding: 0.8rem;
   min-width: 120px;
   font-size: 1.2rem;
   font-weight: 700;
-  text-transform: upperx  case;
+  text-transform: uppercase;
   background-color: #e6214f;
   color: #fff;
   border-radius: 4px;
@@ -51,7 +51,8 @@
 }
 
 .checkoutButton {
-  padding: 6px;
+  
+  padding: 0.8rem;
   text-decoration: none;
   min-width: 120px;
   font-size: 1.2rem;

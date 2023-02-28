@@ -3,13 +3,11 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.cardimage img {
-  /*height: '0';
-  padding-Top: '56.25%';
-  margin-Top:'30';*/
+.cardimagehome img {
   max-height: 50%;
   max-width: 100%;
   border-radius: 8px 8px 0px 0;
+  object-fit: cover;
 }
 
 
@@ -27,7 +25,7 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
-.cardaction:hover {
+.cardactionpro:hover {
   color: #fff;
   background: #6FBF7B;
   --webkit-animation: pulse 1.5s infinite;

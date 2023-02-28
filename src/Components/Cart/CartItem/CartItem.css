@@ -36,11 +36,15 @@
   
   .cardaction {
     display: flex;
-    justify-content: flex-end;
     padding: 0 12px 12px;
+    align-items: center;    
   }
-  
+  .cardaction Typography {
+    justify-content: flex-start;
+    
+  }  
   .cardaction button {
+    justify-content: flex-end;
     min-width: 120px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -51,10 +55,16 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    margin-left: 3rem;  
   }
   
   .cardaction button:hover {
     background-color: #fff;
     color: #e6214f;
   }
-  
+  #quantity {
+    position: relative;
+    display: table-row;
+    font-family: "Bebas Neue", cursive;
+    font-size: 1.9rem;
+  }
