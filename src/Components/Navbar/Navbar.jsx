@@ -18,13 +18,20 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
     };
 
     const handleSignOut = () => {
-        console.log('aaaaaa')
-    };
+        auth.signOut().then(() => {
+          // Log out successful
+        }).catch((error) => {
+          // Handle error
+          console.error('Error signing out:', error);
+        });
+      };
+      
     
-    function MenuSignOut (){
-        handleSignOut();
+      function MenuSignOut (){
         handleMenuClose();
-    }
+        handleSignOut();
+      }
+      
 
 
     return (

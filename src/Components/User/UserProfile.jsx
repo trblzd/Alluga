@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState,useEffect, useContext } from "react";
 import { TextField, Button } from "@mui/material";
 import { doc, setDoc, getDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "../../firebase";
@@ -6,9 +6,29 @@ import './UserProfile.css'
 import { AuthContext } from '../../context/AuthContext'
 
 const UserProfile = () => {
+  const {currentUser} = useContext(AuthContext)
   const [isEditing, setIsEditing] = useState(false);
-  const docRef = doc(db, "cities", "SF");
-  const docSnap = await getDoc(docRef);
+  useEffect(() => {
+    const getDocData = async () => {
+      const docRef = doc(collection(db, "usuariodados"), currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const docData = docSnap.data();
+        setData({
+          Nome: docData.Nome || '',
+          Telefone: docData.Telefone || '',
+          CPF: docData.CPF || '',
+          RG: docData.RG || '',
+        });
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    };
+    getDocData();
+  }, [currentUser]);
+  
+  
 
   const [data, setData] = useState({
     Nome: '',
@@ -16,9 +36,6 @@ const UserProfile = () => {
     CPF: '',
     RG: '',
   });
-
-  const {currentUser} = useContext(AuthContext)
-  console.log(currentUser)
 
   const handleAdd = async (e) => {
     e.preventDefault();
