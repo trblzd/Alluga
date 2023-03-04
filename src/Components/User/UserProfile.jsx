@@ -1,7 +1,7 @@
 import React, { useState,useEffect, useContext } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import { doc, setDoc, getDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db, auth } from "../../firebase";
+import { db } from "../../firebase";
 import './UserProfile.css'
 import { AuthContext } from '../../context/AuthContext'
 
@@ -63,13 +63,13 @@ const UserProfile = () => {
     handleAdd(e);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (e) => {
     setIsEditing(false);
     setData({
-      Nome: '',
-      Telefone: '',
-      CPF: '',
-      RG: '',
+      Nome: data.Nome,
+      Telefone: data.Telefone ,
+      CPF: data.CPF,
+      RG: data.RG 
     });
   };
 
@@ -82,6 +82,7 @@ const UserProfile = () => {
 
   return (
     <div className="user-profile">
+      <Typography> Seus Dados: </Typography>
       <TextField
         className="user-profile__input"
         type="text"

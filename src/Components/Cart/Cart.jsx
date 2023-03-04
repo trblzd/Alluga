@@ -4,7 +4,8 @@ import './Cart.css';
 import CartItem from './CartItem/CartItem';
 import { Link } from 'react-router-dom';
 
-const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
+const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart, handleRefreshCart }) => {
+    //const SendEmail = 
     const EmptyCart = () => (
         <Typography variant="subtitle1">Você não tem itens no seu carrinho, <Link to='/' className='link'>Adicione alguns!</Link>
         </Typography>
@@ -25,7 +26,7 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
                 </Typography>
                 <div>
                     <Button class='emptyButton' size='large' type='button' variant='contained'onClick={handleEmptyCart}>Esvaziar Carrinho</Button>
-                    <Button component={Link} to='/Checkout' class='checkoutButton' size='large' type='button' variant='contained'>Concluir Aluguel</Button>
+                    <Button class='checkoutButton' size='large' type='button' variant='contained' onClick={1}>Concluir Aluguel</Button>
                 </div>
             </div>
         </>

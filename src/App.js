@@ -12,9 +12,6 @@ const Navbar = lazy(() => import("./Components/Navbar/Navbar"));
 const Products = lazy(() => import("./Components/Products/Products"));
 const Cart = lazy(() => import("./Components/Cart/Cart"));
 const Login = lazy(() => import("./Components/UserSign/Login/Login"));
-const Checkout = lazy(() =>
-  import("./Components/CheckoutForm/Checkout/Checkout")
-);
 const CreateAccount = lazy(() =>
   import("./Components/UserSign/CreateAccount/CreateAccount")
 );
@@ -23,7 +20,6 @@ const UserProfile = lazy(() => import("./Components/User/UserProfile"));
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
-  const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
   const fetchProducts = async () => {
@@ -53,20 +49,7 @@ const App = () => {
     const newCart = await commerce.cart.refresh();
     setCart(newCart);
   };
-  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
-    try {
-      const incomingOrder = await commerce.checkout.capture(
-        checkoutTokenId,
-        newOrder
-      );
 
-      setOrder(incomingOrder);
-
-      refreshCart();
-    } catch (error) {
-      setErrorMessage(error.data.error.message);
-    }
-  };
   useEffect(() => {
     fetchProducts();
     fetchCart();
@@ -109,25 +92,16 @@ const App = () => {
                       cart={cart}
                       handleEmptyCart={handleEmptyCart}
                       handleRemoveFromCart={handleRemoveFromCart}
+                      handleRefreshCart={refreshCart}
                     />
                   </RequireAuth>
-                }
-              />
-              <Route
-                path="/Checkout"
-                element={
-                  <Checkout
-                    cart={cart}
-                    onCaptureCheckout={handleCaptureCheckout}
-                    error={errorMessage}
-                  />
                 }
               />
 
               <Route path="/CriarConta" element={<CreateAccount />} />
 
               <Route
-                path="/Perfil"
+                path="/MeusDados"
                 element={
                   <RequireAuth>
                     <UserProfile />

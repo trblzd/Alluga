@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { AppBar, Toolbar, IconButton, Badge, Typography, Menu, MenuItem } from "@mui/material";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import Person  from "@mui/icons-material/Person";
 import logo from "../../Assets/logo1.png";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import {signOut} from 'firebase/auth';
 import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext'
 
 const Navbar = ({ totalItems, props: HomePageProps }) => {
-    const location = useLocation();
     const [anchorEl, setAnchorEl] = useState(null);
+    const location = useLocation();
+        
+    const [error, setError] = useState(false)
+    const {dispatch} = useContext(AuthContext)
+
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -18,12 +25,15 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
     };
 
     const handleSignOut = () => {
-        auth.signOut().then(() => {
-          // Log out successful
-        }).catch((error) => {
-          // Handle error
-          console.error('Error signing out:', error);
-        });
+        signOut(auth).then((userCredential) => {
+          const user = userCredential.user;
+          dispatch({type: "LOGOUT", payload: user})
+          location('/Perfil');
+        })
+        .catch((error) => {
+          setError(error);
+          })
+
       };
       
     
@@ -40,8 +50,7 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
                 <Typography component={Link} to="/" variant="h6" class="al-logo" color="inherit">
                     <img src={logo} alt="AllugaLogo" class="imagelogo"/>
                 </Typography>
-                <div class="grow" />
-                {(location.pathname === '/' || location.pathname.startsWith('/product-view/')) && (
+                <div class="grow" />{(location.pathname === '/') && (
                     <div class="button">
                         <IconButton
                             aria-label="Show cart items"
@@ -65,9 +74,39 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
                             open={Boolean(anchorEl)}
                             onClose={handleMenuClose}
                         >
-                            <MenuItem component={Link} to="/Perfil" onClick={handleMenuClose}>
-                                Perfil
+                            <MenuItem component={Link} to="/MeusDados" onClick={handleMenuClose}>
+                                Meus Dados
                             </MenuItem>
+                            <MenuItem onClick={MenuSignOut}>
+                               Sair da Conta
+                            </MenuItem>
+                        </Menu>
+                    </div>
+                )}
+                {(location.pathname === '/Perfil') && (
+                    <div class="button">
+                        <IconButton
+                            aria-label="Show cart items"
+                            color="inherit"
+                            component={Link}
+                            to="/Carrinho"
+                        >
+                            <Badge badgeContent={totalItems} color="secondary">
+                                <ShoppingCart />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            aria-label="Sign Up"
+                            color="inherit"
+                            onClick={handleMenuOpen}
+                        >
+                            <Person />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                        >
                             <MenuItem onClick={MenuSignOut}>
                                Sair da Conta
                             </MenuItem>
