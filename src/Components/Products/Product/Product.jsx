@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@mui/material';
 import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
@@ -18,7 +19,6 @@ const Product = ({ product, onAddToCart }) => {
                     <Typography variant='h5' gutterBottom class='cardheading'>{product.name}</Typography>
                     <Typography class='cardtext' dangerouslySetInnerHTML={{ __html: product.description }} variant='body2' color='textSecondary' />
                     <Typography variant='h5' class='cardtext'>{product.price.formatted_with_symbol}/Dia</Typography>
-
             </CardContent>
 
 
@@ -27,5 +27,3 @@ const Product = ({ product, onAddToCart }) => {
 }
 
 export default Product;
-
-

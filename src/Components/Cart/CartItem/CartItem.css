@@ -1,70 +1,70 @@
+
 .cardsl1 {
-    border-radius: 16px;
-    box-shadow: none;
-    background: #fff;
-    transform-origin: center;
-    transition: all 0.4s ease-in-out;
-    overflow: hidden;
-    margin-bottom: 15px;
-    width: 350px;
-    height: 100%;
-    
-    -webkit-box-shadow: 0px 0px 29px -14px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 29px -14px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 29px -14px rgba(0,0,0,0.75);
-  }
+  border-radius: 16px;
+  box-shadow: none;
+  background: #fff;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  margin-bottom: 15px;
+  width: 350px;
+  height: 100%;
   
-  .cardimage {
-    width: 350px;
-    height: 100%;
-    object-fit: cover;
-  }
+  -webkit-box-shadow: 0px 0px 29px -14px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 29px -14px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 29px -14px rgba(0,0,0,0.75);
+}
+
+.cardimage {
+  width: 350px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-heading {
+  margin: 12px 0;
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: black;
+}
+
+.card-text {
+  margin: 12px 0;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.cardaction {
+  display: flex;
+  padding: 0 12px 12px;
+  align-items: center;    
+}
+.cardaction Typography {
+  justify-content: flex-start;
   
-  .card-heading {
-    margin: 12px 0;
-    font-family: "Bebas Neue", cursive;
-    font-size: 1.9rem;
-    letter-spacing: 0.06em;
-    color: black;
-  }
-  
-  .card-text {
-    margin: 12px 0;
-    font-size: 1.5rem;
-    color: black;
-  }
-  
-  .cardaction {
-    display: flex;
-    padding: 0 12px 12px;
-    align-items: center;    
-  }
-  .cardaction Typography {
-    justify-content: flex-start;
-    
-  }  
-  .cardaction button {
-    justify-content: flex-end;
-    min-width: 120px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    background-color: #e6214f;
-    color: #fff;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin-left: 3rem;  
-  }
-  
-  .cardaction button:hover {
-    background-color: #fff;
-    color: #e6214f;
-  }
-  #quantity {
-    position: relative;
-    display: table-row;
-    font-family: "Bebas Neue", cursive;
-    font-size: 1.9rem;
-  }
+}  
+.cardaction button {
+  justify-content: flex-end;
+  min-width: 120px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #e6214f;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-left: 3rem;  
+}
+
+.cardaction button:hover {
+  background-color: #fff;
+  color: #e6214f;
+}
+#quantity {
+  position: relative;
+  display: table-row;
+  font-family: "Bebas Neue";
+  font-size: 1.9rem;
+}

@@ -1,5 +1,5 @@
 import React, {useState,useContext} from 'react'
-import { TextField, Button, Typography} from '@mui/material'
+import { TextField, Button, Typography, Grid, Paper} from '@mui/material'
 import './Login.css'
 import { Link } from 'react-router-dom'
 import {signInWithEmailAndPassword} from 'firebase/auth';
@@ -26,7 +26,7 @@ const Login=()=>{
           //signedIn
           const user = userCredential.user;
           dispatch({type: "LOGIN", payload: user})
-          navigate('/Perfil');
+          navigate('/MeusDados');
         })
         .catch((error) => {
           setError(error);
@@ -34,14 +34,23 @@ const Login=()=>{
 
     };
     return (
-        <form onSubmit={handleLogin}>
+      <div>
+        <div class='toolbarLG'/>
+        <Paper class='paperLG'>
+        <Grid>
+            <h1 class='headerLG'>Login</h1>
+            <br />
+          </Grid>
+          <form onSubmit={handleLogin} class='formLG'>
           <TextField
+            fullWidth
             label="Email"
             variant="outlined"
-            fullWidth
+            placeholder="Insira seu Email"
             type='email'
             onChange={e=>setEmail(e.target.value)}
           />
+          <br/> <br/>
           <TextField
             label="Senha"
             variant="outlined"
@@ -49,16 +58,22 @@ const Login=()=>{
             type="password"
             onChange={e=>setPassword(e.target.value)}
           />
-          <Button type='submit' variant="contained" color="primary" class="button">
+           <br/> <br/>
+           <div class='button-container'>
+          <Button type='submit' variant="contained" color="primary" class="buttonLG">
             Login
           </Button>
-          <Button type='button' variant="contained" color="primary" class="button" component={Link} to={'/CriarConta'} >
+          <Button type='button' variant="contained" color="primary" class="buttonLG" component={Link} to={'/CriarConta'} >
             Criar Conta
           </Button>
-          <Typography align="center">   
+          </div>
+          <Typography align="left">   
             Esqueci minha Senha
           </Typography>
         </form>
+        </Paper>
+      </div>
+    
       );
 }
 

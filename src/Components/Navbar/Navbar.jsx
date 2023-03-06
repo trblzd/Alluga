@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from "react";
 import { AppBar, Toolbar, IconButton, Badge, Typography, Menu, MenuItem } from "@mui/material";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
@@ -24,13 +25,15 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
         setAnchorEl(null);
     };
 
-    const handleSignOut = () => {
-        signOut(auth).then((userCredential) => {
-          const user = userCredential.user;
+    const handleSignOut = (user) => {
+        signOut(auth).then(() => {
+          console.log('Entrei')
           dispatch({type: "LOGOUT", payload: user})
-          location('/Perfil');
+          location('/');
+          
         })
         .catch((error) => {
+            console.log(error)
           setError(error);
           })
 

@@ -1,26 +1,59 @@
 .user-profile {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .user-profile__input {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .user-profile__button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .user-profile__button {
-    flex: 1;
-    margin-right: 10px;
-  }
-  
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 6rem;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.user-profile__input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.user-profile_button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+
+}
+
+.user-profile_button {
+padding: 0.8rem;
+min-width: 120px;
+font-size: 1.2rem;
+font-weight: 700;
+text-transform: uppercase;
+background-color: #9DCC6C;
+color: #fff;
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+border-color: #9DCC6C ;
+}
+.user-profile_button:hover {
+  background-color: #fff;
+  color: #9DCC6C;
+  border-color: #9DCC6C;
+}
+#cancel{
+  background-color: #e6214f;
+  color:  #fff;
+  border-color: #e6214f ;
+}
+#cancel:hover{
+  background-color: #fff;
+  color:  #e6214f;
+  border-color: #e6214f ;
+}
+.headerup {
+  margin-top: 1rem;
+  margin-bottom: 2rem; 
+  font-weight: bolder;
+  font-size: 40px;
+}
