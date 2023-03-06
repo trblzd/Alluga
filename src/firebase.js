@@ -1,4 +1,5 @@
 import firebase from "firebase/compat/app";
+import "firebase/compat/functions";
 import "firebase/compat/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -14,14 +15,16 @@ const firebaseConfig = {
   measurementId: "G-JD028WPY3N",
 };
 
-let app;
+export let app;
 if (firebase.apps.length === 0) {
   app = firebase.initializeApp(firebaseConfig);
 } else {
   app = firebase.app();
 }
-
 export const auth = firebase.auth();
 export const storage = getStorage(app);
 export const db = getFirestore(app);
-//export const signOut = firebase.auth.signOut();
+export const functions = firebase.functions(); // add this line
+
+// Now you can call functions() method to get an instance of the Functions service
+const sendMail = functions.httpsCallable("sendMail");

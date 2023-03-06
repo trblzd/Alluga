@@ -34,7 +34,11 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
         </Typography>
         <div>
           <Button class='emptyButton' size='large' type='button' variant='contained' onClick={handleEmptyCart}>Esvaziar Carrinho</Button>
+<<<<<<< HEAD
           <Button class='checkoutButton' size='large' type='button' variant='contained' onClick={1} disabled={sendingEmail}>Concluir Aluguel</Button>
+=======
+          <Button class='checkoutButton' size='large' type='button' variant='contained' onClick={sendEmail} disabled={sendingEmail}>Concluir Aluguel</Button>
+>>>>>>> 38469ae19efc40ce238fa19ba37a093ba84e23a5
         </div>
         {sendingEmail && <Typography variant='subtitle1' color='textSecondary'>Enviando email para o Alluga...</Typography>}
         {emailSent && <Typography variant='subtitle1' color='success'>O pedido foi enviado com sucesso!</Typography>}

@@ -26,10 +26,17 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
     };
 
     const handleSignOut = (user) => {
+<<<<<<< HEAD
         signOut(auth).then(() => {
           console.log('Entrei')
           dispatch({type: "LOGOUT", payload: user})
           location('/');
+=======
+        signOut(auth).then((userCredential) => {
+          console.log('Entrei')
+          dispatch({type: "LOGOUT", payload: user})
+          location('/Perfil');
+>>>>>>> 38469ae19efc40ce238fa19ba37a093ba84e23a5
           
         })
         .catch((error) => {
