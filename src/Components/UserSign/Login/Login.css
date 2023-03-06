@@ -1,29 +1,29 @@
 .toolbarLG {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 8px;
 }
 
 .paperLG {
   padding: 10% 1%;
-  width: 30%;
+  width: 25%;
   margin: 1% auto;
   box-sizing: content-box;
   
 }
 
 .headerLG {
-  margin: 0; 
+  margin: 1% auto; 
   font-weight: bolder;
   font-size: 50px
 }
 .button-container{
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  margin-top: 20px;
-     
+
+  margin-top: 1%;
+  padding-bottom: 0.5rem;
 }
 .buttonLG {
   padding: 0.8rem;
@@ -39,6 +39,7 @@
   transition: all 0.3s ease-in-out;
   border: solid 1px;
   border-color: #9DCC6C;
+
 }
 .buttonLG:hover {
   background-color: #fff;
@@ -46,7 +47,7 @@
   border-color: #9DCC6C;
 }
 
- .formLG > * {
-  justify-content: center;
+.formLG > * {
+  justify-content: space-between;
   align-items: left;
  }

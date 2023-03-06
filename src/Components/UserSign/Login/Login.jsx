@@ -67,7 +67,7 @@ const Login=()=>{
             Criar Conta
           </Button>
           </div>
-          <Typography align="center">   
+          <Typography align="left">   
             Esqueci minha Senha
           </Typography>
         </form>
