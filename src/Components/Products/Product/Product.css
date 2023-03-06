@@ -28,7 +28,6 @@
 .cardactionpro:hover {
   color: #fff;
   background: #6FBF7B;
-  --webkit-animation: pulse 1.5s infinite;
 }
 
 .cardheading {

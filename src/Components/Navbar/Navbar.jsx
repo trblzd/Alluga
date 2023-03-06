@@ -24,13 +24,15 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
         setAnchorEl(null);
     };
 
-    const handleSignOut = () => {
+    const handleSignOut = (user) => {
         signOut(auth).then((userCredential) => {
-          const user = userCredential.user;
+          console.log('Entrei')
           dispatch({type: "LOGOUT", payload: user})
           location('/Perfil');
+          
         })
         .catch((error) => {
+            console.log(error)
           setError(error);
           })
 

@@ -52,7 +52,6 @@
     background-color: #e6214f;
     color: #fff;
     border-radius: 4px;
-    border: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-left: 3rem;  
@@ -65,6 +64,6 @@
   #quantity {
     position: relative;
     display: table-row;
-    font-family: "Bebas Neue", cursive;
+    font-family: "Bebas Neue";
     font-size: 1.9rem;
   }

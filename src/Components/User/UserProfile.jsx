@@ -82,7 +82,7 @@ const UserProfile = () => {
 
   return (
     <div className="user-profile">
-      <Typography> Seus Dados: </Typography>
+      <Typography class='headerup'> Seus Dados: </Typography>
       <TextField
         className="user-profile__input"
         type="text"
@@ -119,11 +119,11 @@ const UserProfile = () => {
         disabled={!isEditing}
         onChange={handleChange}
       />
-      <div className="user-profile__button-container">
+      <div className="user-profile_button-container">
       {isEditing ? (
         <>
             <Button
-              className="user-profile__button"
+              className="user-profile_button"
               type="submit"
               variant="outlined"
               onClick={handleSave}
@@ -131,7 +131,8 @@ const UserProfile = () => {
             Save
           </Button>
             <Button
-              className="user-profile__button"
+              className="user-profile_button"
+              id="cancel"
               variant="outlined"
               onClick={handleCancel}
             >
@@ -140,7 +141,7 @@ const UserProfile = () => {
         </>
       ) : (
           <Button
-            className="user-profile__button"
+            className="user-profile_button"
             variant="outlined"
             onClick={handleEdit}
           >

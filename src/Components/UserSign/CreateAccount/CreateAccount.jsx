@@ -13,7 +13,7 @@ const SignUp = () => {
 
   const history = useNavigate();
 
-  const Sign = (e) => {
+  const CriarConta = (e) => {
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
@@ -38,14 +38,14 @@ const SignUp = () => {
 
   return (
     <div>
-      <div class='toolbar' />
+      <div class='toolbarCA' />
       <Grid>
-        <Paper elevation={5} class='paper'>
+        <Paper elevation={5} class='paperCA'>
           <Grid>
-            <h1 class='header'>Criar Conta</h1>
+            <h1 class='headerCA'>Criar Conta</h1>
             <br />
           </Grid>
-          <form class='form' onSubmit={Sign}>
+          <form class='formCA' onSubmit={CriarConta}>
             
             <br />
             <br />
@@ -71,7 +71,7 @@ const SignUp = () => {
             />
             <br />
             <br />
-            <Button class='button' type='submit' variant='contained' color='primary'>Criar Conta</Button>
+            <Button class='buttonCA' type='submit' variant='contained' color='primary'>Criar Conta</Button>
           </form>
         </Paper>
       </Grid>

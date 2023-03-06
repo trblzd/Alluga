@@ -20,7 +20,6 @@ const UserProfile = lazy(() => import("./Components/User/UserProfile"));
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
-  const [errorMessage, setErrorMessage] = useState("");
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -44,10 +43,6 @@ const App = () => {
   const handleEmptyCart = async () => {
     const item = await commerce.cart.empty();
     setCart(item);
-  };
-  const refreshCart = async () => {
-    const newCart = await commerce.cart.refresh();
-    setCart(newCart);
   };
 
   useEffect(() => {
@@ -92,7 +87,6 @@ const App = () => {
                       cart={cart}
                       handleEmptyCart={handleEmptyCart}
                       handleRemoveFromCart={handleRemoveFromCart}
-                      handleRefreshCart={refreshCart}
                     />
                   </RequireAuth>
                 }
