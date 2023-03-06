@@ -11,11 +11,13 @@ import {
 const Navbar = lazy(() => import("./Components/Navbar/Navbar"));
 const Products = lazy(() => import("./Components/Products/Products"));
 const Cart = lazy(() => import("./Components/Cart/Cart"));
-const Login = lazy(() => import("./Components/UserSign/Login/Login"));
+const Login = lazy(() => import("./Components/User/Login/Login"));
 const CreateAccount = lazy(() =>
-  import("./Components/UserSign/CreateAccount/CreateAccount")
+  import("./Components/User/CreateAccount/CreateAccount")
 );
-const UserProfile = lazy(() => import("./Components/User/UserProfile"));
+const UserProfile = lazy(() =>
+  import("./Components/User//UserProfile/UserProfile")
+);
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -44,6 +46,10 @@ const App = () => {
     const item = await commerce.cart.empty();
     setCart(item);
   };
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setCart(newCart);
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -65,20 +71,26 @@ const App = () => {
           />
           <Suspense fallback={<h1>Carregando...</h1>}>
             <Routes>
+              <Route path="/CriarConta" element={<CreateAccount />} />
               <Route path="/Login" element={<Login />} />
               <Route
-                path=""
+                path="/MeusDados"
                 element={
                   <RequireAuth>
-                    <Products
-                      products={products}
-                      onAddToCart={handleAddToCart}
-                      handleUpdateCartQty
-                    />
+                    <UserProfile />
                   </RequireAuth>
                 }
               />
-
+              <Route
+                path=""
+                element={
+                  <Products
+                    products={products}
+                    onAddToCart={handleAddToCart}
+                    handleUpdateCartQty
+                  />
+                }
+              />
               <Route
                 path="/Carrinho"
                 element={
@@ -87,18 +99,8 @@ const App = () => {
                       cart={cart}
                       handleEmptyCart={handleEmptyCart}
                       handleRemoveFromCart={handleRemoveFromCart}
+                      handleRefreshCart={refreshCart}
                     />
-                  </RequireAuth>
-                }
-              />
-
-              <Route path="/CriarConta" element={<CreateAccount />} />
-
-              <Route
-                path="/MeusDados"
-                element={
-                  <RequireAuth>
-                    <UserProfile />
                   </RequireAuth>
                 }
               />

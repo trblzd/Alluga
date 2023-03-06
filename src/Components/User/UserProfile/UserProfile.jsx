@@ -1,9 +1,9 @@
 import React, { useState,useEffect, useContext } from "react";
 import { TextField, Button, Typography } from "@mui/material";
 import { doc, setDoc, getDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../../../firebase";
 import './UserProfile.css'
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../../../context/AuthContext'
 
 const UserProfile = () => {
   const {currentUser} = useContext(AuthContext)

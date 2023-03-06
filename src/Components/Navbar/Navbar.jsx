@@ -14,8 +14,9 @@ import { AuthContext } from '../../context/AuthContext'
 const Navbar = ({ totalItems, props: HomePageProps }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const location = useLocation();
+    const navigate = useNavigate();
         
-    const [error, setError] = useState(false)
+    const [setError] = useState(false)
     const {dispatch} = useContext(AuthContext)
 
     const handleMenuOpen = (event) => {
@@ -26,22 +27,14 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
     };
 
     const handleSignOut = (user) => {
-<<<<<<< HEAD
         signOut(auth).then(() => {
-          console.log('Entrei')
           dispatch({type: "LOGOUT", payload: user})
-          location('/');
-=======
-        signOut(auth).then((userCredential) => {
-          console.log('Entrei')
-          dispatch({type: "LOGOUT", payload: user})
-          location('/Perfil');
->>>>>>> 38469ae19efc40ce238fa19ba37a093ba84e23a5
+          navigate('/');
           
         })
         .catch((error) => {
             console.log(error)
-          setError(error);
+            setError(error);
           })
 
       };
@@ -60,7 +53,8 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
                 <Typography component={Link} to="/" variant="h6" class="al-logo" color="inherit">
                     <img src={logo} alt="AllugaLogo" class="imagelogo"/>
                 </Typography>
-                <div class="grow" />{(location.pathname === '/') && (
+                <div class="grow" />
+                {(location.pathname === '/') && (
                     <div class="button">
                         <IconButton
                             aria-label="Show cart items"
@@ -93,7 +87,30 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
                         </Menu>
                     </div>
                 )}
-                {(location.pathname === '/Perfil') && (
+                {(location.pathname === '/Carrinho') && (
+                    <div class="button">
+                        <IconButton
+                            aria-label="Sign Up"
+                            color="inherit"
+                            onClick={handleMenuOpen}
+                        >
+                            <Person />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                        >
+                            <MenuItem component={Link} to="/MeusDados" onClick={handleMenuClose}>
+                                Meus Dados
+                            </MenuItem>
+                            <MenuItem onClick={MenuSignOut}>
+                               Sair da Conta
+                            </MenuItem>
+                        </Menu>
+                    </div>
+                )}
+                {(location.pathname === '/MeusDados') && (
                     <div class="button">
                         <IconButton
                             aria-label="Show cart items"

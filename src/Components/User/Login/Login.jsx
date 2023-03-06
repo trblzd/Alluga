@@ -1,8 +1,8 @@
 import React, {useState,useContext} from 'react'
-import { TextField, Button, Typography, Grid, Paper} from '@mui/material'
+import { TextField, Button, Grid, Paper} from '@mui/material'
 import './Login.css'
 import { Link } from 'react-router-dom'
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext'
@@ -11,19 +11,29 @@ import { AuthContext } from '../../../context/AuthContext'
 
 
 const Login=()=>{    
-    const [error, setError] = useState(false)
+    const [setError] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {dispatch} = useContext(AuthContext)
 
     const navigate = useNavigate();
 
+    const handleForgotPassword = () => {
+      alert('Um email foi enviado para você!')
+    sendPasswordResetEmail(auth, email).then(() => {
+
+      navigate('/Login');
+  })
+  .catch((error) => {
+    setError(error);
+  });
+
+    }
     const handleLogin = (e) => {
         e.preventDefault();
 
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          //signedIn
           const user = userCredential.user;
           dispatch({type: "LOGIN", payload: user})
           navigate('/MeusDados');
@@ -67,9 +77,10 @@ const Login=()=>{
             Criar Conta
           </Button>
           </div>
-          <Typography align="left">   
-            Esqueci minha Senha
-          </Typography>
+          <Button type='text' class="conta" onClick={handleForgotPassword} >
+          Esqueci a senha
+          </Button>
+          
         </form>
         </Paper>
       </div>
