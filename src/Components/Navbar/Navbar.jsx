@@ -29,7 +29,7 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
     const handleSignOut = (user) => {
         signOut(auth).then(() => {
           dispatch({type: "LOGOUT", payload: user})
-          navigate('/');
+          navigate('/MeusDados');
           
         })
         .catch((error) => {

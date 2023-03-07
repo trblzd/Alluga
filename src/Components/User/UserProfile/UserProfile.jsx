@@ -8,6 +8,11 @@ import { AuthContext } from '../../../context/AuthContext'
 const UserProfile = () => {
   const {currentUser} = useContext(AuthContext)
   const [isEditing, setIsEditing] = useState(false);
+  const [modal, setModal] =  useState(false);
+  
+  const toggleModal = ()=>{
+    setModal(!modal);
+  } 
   useEffect(() => {
     const getDocData = async () => {
       const docRef = doc(collection(db, "usuariodados"), currentUser.uid);
@@ -19,7 +24,7 @@ const UserProfile = () => {
           Telefone: docData.Telefone || '',
           CPF: docData.CPF || '',
           RG: docData.RG || '',
-        });
+        });  
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -119,6 +124,9 @@ const UserProfile = () => {
         disabled={!isEditing}
         onChange={handleChange}
       />
+
+      <br/>
+        
       <div className="user-profile_button-container">
       {isEditing ? (
         <>
@@ -128,7 +136,7 @@ const UserProfile = () => {
               variant="outlined"
               onClick={handleSave}
             >
-            Save
+            Salvar
           </Button>
             <Button
               className="user-profile_button"
@@ -136,8 +144,11 @@ const UserProfile = () => {
               variant="outlined"
               onClick={handleCancel}
             >
-            Cancel
+            Cancelar
           </Button>
+        
+ 
+          
         </>
       ) : (
           <Button
@@ -145,10 +156,23 @@ const UserProfile = () => {
             variant="outlined"
             onClick={handleEdit}
           >
-          Edit
+          Editar
         </Button>
+        
       )}
       </div>
+
+      <Button type='text' class="btn-modal" onClick={toggleModal} >
+            Termos de uso
+          </Button>
+          {modal && (
+            <div class="modal" onClick={toggleModal}>
+              <div class="overlay" onClick={toggleModal} ></div>
+              <div class="modal-content" >
+                <p>Seus dados serão utilizados para manter a sua e a nossa segurança durante todo o processo de locação, eles não serão, em hipotese alguma, compartilhados com terceiros, e caso houver atraso não justificado na devolução de produtos, serão utilizados para entrar em contato, obrigado pela compreensão!</p>
+              </div>
+            </div>
+          )}
     </div>
   );
 };
