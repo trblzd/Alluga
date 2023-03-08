@@ -17,10 +17,15 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
   const sendEmail = async () => {
     setSendingEmail(true);
     try {
-     
       const docRef = doc(collection(db, "usuariodados"), currentUser.uid);
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
+  
+      if (!docData) {
+        alert("Não foi possível encontrar seus dados no banco de dados. Por favor, preencha seus dados na página 'Meus Dados' antes de concluir o aluguel.");
+        return;
+      }
+  
       // CONTEUDO DO EMAIL
       var emailText = `
         Nome: ${docData.Nome}
@@ -50,6 +55,7 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
       setSendingEmail(false);
     }
   }
+  
 
   const EmptyCart = () => (
     <Typography variant="subtitle1">Você não tem itens no seu carrinho, <Link to='/' className='link'>Adicione alguns!</Link>
