@@ -1,5 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+// eslint-disable-next-line
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";

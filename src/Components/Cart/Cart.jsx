@@ -22,7 +22,7 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
       // CONTEUDO DO EMAIL
-      const emailText = `
+      var emailText = `
         Nome: ${docData.Nome}
         RG: ${docData.RG}
         CPF: ${docData.CPF}
@@ -36,7 +36,7 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
         \n
         Subtotal: ${cart.subtotal.formatted_with_symbol}
       `;
-      emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, emailText, process.env.REACT_APP_PUBLIC_KEY)
+      emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, {message: emailText,}, process.env.REACT_APP_PUBLIC_KEY)
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
      }, function(error) {

@@ -17,6 +17,7 @@ const SignUp = () => {
     e.preventDefault();
     auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
+        // eslint-disable-next-line
         const user = userCredential.user;
         history.push('/');
       })
