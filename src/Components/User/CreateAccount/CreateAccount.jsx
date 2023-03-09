@@ -22,7 +22,7 @@ const SignUp = () => {
           .then((userCredential) => {
             const user = userCredential.user;
             dispatch({ type: 'LOGIN', payload: user });
-            history('/');
+            history('/MeusDados');
           })
       })
       .catch((error) => {
