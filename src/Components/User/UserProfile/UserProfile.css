@@ -60,15 +60,14 @@ border-color: #92ce52 ;
 }
 .headerup {
   margin-top: 1rem;
-  margin-bottom: 2rem; 
+  margin-bottom: 1rem; 
   font-weight: bolder;
   font-size: 40px;
 }
 
 .btn-modal{
 
-  position: absolute;
-  padding-top: 4rem;
+  padding-bottom: 1rem;
   background: transparent;
   border: 0;
   cursor: pointer;

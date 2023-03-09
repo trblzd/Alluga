@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { AppBar, Toolbar, IconButton, Badge, Typography, Menu, MenuItem } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Badge, Typography, Menu, MenuItem, Icon } from "@mui/material";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import Person  from "@mui/icons-material/Person";
 import logo from "../../Assets/logo1.png";
+import LocationIcon from '@mui/icons-material/LocationOn';
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import {signOut} from 'firebase/auth';
@@ -50,11 +51,16 @@ const Navbar = ({ totalItems }) => {
                 <Typography component={Link} to="/" variant="h6" class="al-logo" color="inherit">
                     <img src={logo} alt="AllugaLogo" class="imagelogo"/>
                 </Typography>
+                <Icon class='locicon'>
+                    <LocationIcon/>
+                    
+                </Icon>
+                <Typography class='loctext'>Somente em Bagé/RS</Typography>
+
                 <div class="grow" />
                 {(location.pathname === '/') && (
                     <div class="button">
                         <IconButton
-
                             aria-label="Show cart items"
                             color="inherit"
                             component={Link}

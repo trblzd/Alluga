@@ -87,6 +87,9 @@ const UserProfile = () => {
   return (
     <div className="user-profile">
       <Typography class='headerup'> Seus Dados: </Typography>
+      <Button type='text' class="btn-modal" onClick={toggleModal} >
+            Termos de uso
+          </Button>
       <TextField
         className="user-profile__input"
         type="text"
@@ -161,9 +164,7 @@ const UserProfile = () => {
       )}
       </div>
 
-      <Button type='text' class="btn-modal" onClick={toggleModal} >
-            Termos de uso
-          </Button>
+      
           {modal && (
             <div class="modal" onClick={toggleModal}>
               <div class="overlay" onClick={toggleModal} ></div>
