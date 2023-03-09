@@ -11,7 +11,9 @@ const Login=()=>{
     const [setError] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const {dispatch} = useContext(AuthContext)
+    const {dispatch} = useContext(AuthContext);
+    // eslint-disable-next-line
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const handleForgotPassword = () => {
@@ -26,19 +28,29 @@ const Login=()=>{
 
     }
     const handleLogin = (e) => {
-        e.preventDefault();
-
-        signInWithEmailAndPassword(auth, email, password)
+      e.preventDefault();
+  
+      signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          dispatch({type: "LOGIN", payload: user})
+          dispatch({ type: 'LOGIN', payload: user });
           navigate('/MeusDados');
         })
         .catch((error) => {
-          setError(error);
-          })
-
+          switch (error.code) {
+            case 'auth/user-not-found':
+              setErrorMessage('Usuário não encontrado. Verifique seu email.');
+              break;
+            case 'auth/wrong-password':
+              setErrorMessage('Senha incorreta. Tente novamente.');
+              break;
+            default:
+              setErrorMessage('Algo deu errado. Tente novamente mais tarde.');
+              break;
+          }
+        });
     };
+  
     return (
       <div>
         <div class='toolbarLG'/>
@@ -64,6 +76,7 @@ const Login=()=>{
             type="password"
             onChange={e=>setPassword(e.target.value)}
           />
+          {errorMessage && <p className="error">{errorMessage}</p>}
            <br/> <br/>
            <div class='button-container'>
           <Button type='submit' variant="contained" color="primary" class="buttonLG">
