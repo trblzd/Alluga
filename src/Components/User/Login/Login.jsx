@@ -7,15 +7,11 @@ import { auth } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext'
 
-
-
-
 const Login=()=>{    
     const [setError] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {dispatch} = useContext(AuthContext)
-
     const navigate = useNavigate();
 
     const handleForgotPassword = () => {

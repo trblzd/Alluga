@@ -19,7 +19,7 @@
 }
 
 .cardactionpro button {
-  color: #6FBF7B;
+  color: #92ce52;
   background: #fff;
   border-radius: 100%;
   padding: 15px;
@@ -30,7 +30,7 @@
 
 .cardactionpro button:hover {
   color: #fff;
-  background: #6FBF7B;
+  background: #92ce52;
 }
 
 .cardactionpro button:hover svg {
@@ -38,7 +38,7 @@
 }
 
 .cardactionpro button svg {
-  fill: #6FBF7B;
+  fill: #92ce52;
 }
 
 .cardheading {

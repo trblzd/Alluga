@@ -13,6 +13,7 @@ const UserProfile = () => {
   const toggleModal = ()=>{
     setModal(!modal);
   } 
+  
   useEffect(() => {
     const getDocData = async () => {
       const docRef = doc(collection(db, "usuariodados"), currentUser.uid);
@@ -33,8 +34,6 @@ const UserProfile = () => {
     getDocData();
   }, [currentUser]);
   
-  
-
   const [data, setData] = useState({
     Nome: '',
     Telefone: '',

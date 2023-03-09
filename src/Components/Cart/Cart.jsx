@@ -43,9 +43,9 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
       `;
       emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, {message: emailText,}, process.env.REACT_APP_PUBLIC_KEY)
       .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
+        console.log('SUCCESSO!', response.status, response.text);
      }, function(error) {
-        console.log('FAILED...', error);
+        console.log('FALHA...', error);
      });
       setEmailSent(true);
       handleEmptyCart();
@@ -56,7 +56,6 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
     }
   }
   
-
   const EmptyCart = () => (
     <Typography variant="subtitle1">Você não tem itens no seu carrinho, <Link to='/' className='link'>Adicione alguns!</Link>
     </Typography>
@@ -81,8 +80,8 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
           <Button class='emptyButton' size='large' type='button' variant='contained' onClick={handleEmptyCart}>Esvaziar Carrinho</Button>
           <Button class='checkoutButton' size='large' type='button' variant='contained' onClick={sendEmail} disabled={sendingEmail}>Concluir Aluguel</Button>
         </div>
-        {sendingEmail && <Typography variant='subtitle1' color='textSecondary'>Enviando email para o Alluga...</Typography>}
-        {emailSent && <Typography variant='subtitle1' color='success'>O pedido foi enviado com sucesso!</Typography>}
+        {sendingEmail && <Typography variant='subtitle1' color='textSecondary' class='evemail'>Enviando email para o Alluga...</Typography>}
+        {emailSent && <Typography variant='subtitle1' color='success' class='evemail'>O pedido foi enviado com sucesso!</Typography>}
       </div>
     </>
   );

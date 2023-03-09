@@ -1,6 +1,5 @@
-
 .appBar {
-  background-color: #9DCC6C;
+  background-color: #92ce52;
   box-shadow: none;
   border-bottom: 0px solid rgba(0, 0, 0, 0.12);
 }
@@ -10,9 +9,6 @@
     width: calc(100% - 0px);
     margin-left: 0;
   }
-}
-.badge {
-  color: #C7002F;
 }
 
 .al-logo {
@@ -28,7 +24,7 @@
 }
 
 .menuButton {
-  margin-right: 16px;
+  margin-right: 1rem;
 }
 
 @media (min-width: 600px) {

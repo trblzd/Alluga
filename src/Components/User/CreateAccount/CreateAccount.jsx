@@ -9,8 +9,6 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false); 
   const [errorMessage, setErrorMessage] = useState('');
-
-
   const history = useNavigate();
 
   const CriarConta = (e) => {

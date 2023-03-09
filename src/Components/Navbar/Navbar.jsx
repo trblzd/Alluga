@@ -1,4 +1,3 @@
-
 import React, { useState, useContext } from "react";
 import { AppBar, Toolbar, IconButton, Badge, Typography, Menu, MenuItem } from "@mui/material";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
@@ -11,13 +10,14 @@ import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext'
 
-const Navbar = ({ totalItems, props: HomePageProps }) => {
+
+
+const Navbar = ({ totalItems }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const location = useLocation();
-    const navigate = useNavigate();
-        
-    const [setError] = useState(false)
-    const {dispatch} = useContext(AuthContext)
+    const navigate = useNavigate();     
+    const [setError] = useState(false);
+    const {dispatch} = useContext(AuthContext);
 
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -36,18 +36,15 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
             console.log(error)
             setError(error);
           })
-
       };
       
-    
       function MenuSignOut (){
         handleMenuClose();
         handleSignOut();
       }
       
-
-
     return (
+        
         <AppBar position="fixed" class="appBar" color="inherit">
             <Toolbar>
                 <Typography component={Link} to="/" variant="h6" class="al-logo" color="inherit">
@@ -57,12 +54,13 @@ const Navbar = ({ totalItems, props: HomePageProps }) => {
                 {(location.pathname === '/') && (
                     <div class="button">
                         <IconButton
+
                             aria-label="Show cart items"
                             color="inherit"
                             component={Link}
                             to="/Carrinho"
                         >
-                            <Badge badgeContent={totalItems} color="secondary">
+                            <Badge badgeContent={totalItems} class="badge" color="success" >
                                 <ShoppingCart />
                             </Badge>
                         </IconButton>

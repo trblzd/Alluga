@@ -36,27 +36,27 @@ min-width: 120px;
 font-size: 1.2rem;
 font-weight: 700;
 text-transform: uppercase;
-background-color: #9DCC6C;
+background-color: #92ce52;
 color: #fff;
 border-radius: 4px;
 cursor: pointer;
 transition: all 0.3s ease-in-out;
-border-color: #9DCC6C ;
+border-color: #92ce52 ;
 }
 .user-profile_button:hover {
   background-color: #fff;
-  color: #9DCC6C;
-  border-color: #9DCC6C;
+  color: #92ce52;
+  border-color: #92ce52;
 }
 #cancel{
-  background-color: #e6214f;
+  background-color: #f3194c;
   color:  #fff;
-  border-color: #e6214f ;
+  border-color: #f3194c ;
 }
 #cancel:hover{
   background-color: #fff;
-  color:  #e6214f;
-  border-color: #e6214f ;
+  color:  #f3194c;
+  border-color: #f3194c ;
 }
 .headerup {
   margin-top: 1rem;
