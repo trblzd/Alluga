@@ -1,5 +1,5 @@
 import React, {useState,useContext} from 'react'
-import { TextField, Button, Grid, Paper} from '@mui/material'
+import { TextField, Button, Paper} from '@mui/material'
 import './Login.css'
 import { Link } from 'react-router-dom'
 import {signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
@@ -17,16 +17,18 @@ const Login=()=>{
     const navigate = useNavigate();
 
     const handleForgotPassword = () => {
-      alert('Um email foi enviado para você!')
-    sendPasswordResetEmail(auth, email).then(() => {
-
-      navigate('/Login');
-  })
-  .catch((error) => {
-    setError(error);
-  });
-
-    }
+      if (email !== '') {
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            alert('Um email foi enviado para você!');
+            navigate('/Login');
+          })
+          .catch((error) => {
+            setError(error);
+          });
+      }
+    };
+    
     const handleLogin = (e) => {
       e.preventDefault();
   
@@ -47,6 +49,9 @@ const Login=()=>{
             default:
               setErrorMessage('Algo deu errado. Tente novamente mais tarde.');
               break;
+            case 'auth/invalid-email':
+              setErrorMessage('Insira seu Email');
+              break;
           }
         });
     };
@@ -54,47 +59,43 @@ const Login=()=>{
     return (
       <div>
         <div class='toolbarLG'/>
-        <Paper class='paperLG'>
-        <Grid>
-            <h1 class='headerLG'>Login</h1>
-            <br />
-          </Grid>
-          <form onSubmit={handleLogin} class='formLG'>
-          <TextField
-            fullWidth
-            label="Email"
-            variant="outlined"
-            placeholder="Insira seu Email"
-            type='email'
-            onChange={e=>setEmail(e.target.value)}
-          />
-          <br/> <br/>
-          <TextField
-            label="Senha"
-            variant="outlined"
-            fullWidth
-            type="password"
-            onChange={e=>setPassword(e.target.value)}
-          />
-          {errorMessage && <p className="error">{errorMessage}</p>}
-           <br/> <br/>
-           <div class='button-container'>
-          <Button type='submit' variant="contained" color="primary" class="buttonLG">
-            Login
-          </Button>
-          <Button type='button' variant="contained" color="primary" class="buttonLG" component={Link} to={'/CriarConta'} >
-            Criar Conta
-          </Button>
-          </div>
-          <Button type='text' class="conta" onClick={handleForgotPassword} >
-          Esqueci a senha
-          </Button>
-          
-        </form>
+        <Paper class='paper'>
+          <h1 class='header'>Login</h1>
+          <form onSubmit={handleLogin} class='form'>
+            <TextField
+              fullWidth
+              label="Email"
+              variant="outlined"
+              placeholder="Insira seu Email"
+              type='email'
+              onChange={e=>setEmail(e.target.value)}
+            />
+            <br/><br/>
+            <TextField
+              label="Senha"
+              variant="outlined"
+              fullWidth
+              type="password"
+              onChange={e=>setPassword(e.target.value)}
+            />
+            {errorMessage && <p className="error">{errorMessage}</p>}
+            <br/><br/>
+            <div class='button-container'>
+              <Button type='submit' variant="contained" color="primary" class="button">
+                Login
+              </Button>
+              <Button type='button' variant="contained" color="primary" class="button" component={Link} to={'/CriarConta'} >
+                Criar Conta
+              </Button>
+            </div>
+            <Button type='text' class="conta" onClick={handleForgotPassword} >
+              Esqueci a senha
+            </Button>
+          </form>
         </Paper>
       </div>
-    
-      );
+    );
+        
 }
 
 export default Login;

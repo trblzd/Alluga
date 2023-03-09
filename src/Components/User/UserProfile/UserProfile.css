@@ -76,8 +76,7 @@ border-color: #92ce52 ;
  .btn-modal:hover {
   text-decoration:underline
  }
-
-.modal, .overlay {
+ .modal, .overlay {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -90,18 +89,35 @@ border-color: #92ce52 ;
 .overlay {
   background: rgba(49,49,49,0.8);
 }
-.modal-content{
+
+.modal-content {
+  text-align: justify;
+  text-indent: 2rem;
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background-color: #f1f1f1;
   padding: 2rem;
   border-radius: 3px;
-  max-width: 900px;
-  min-width: 600px;
+  max-width: 90%;
+  min-width: 300px;
   display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    padding: 1rem;
+    min-width: 250px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .modal-content {
+    padding: 0.5rem;
+    min-width: 200px;
+  }
 }
 
 .close-modal {

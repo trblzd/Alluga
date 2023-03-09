@@ -81,3 +81,8 @@
   font-size: 1.6rem;
   font-family: 'BEBAS NEUE';
 }
+@media (max-width: 768px) { /* Change the max-width value to adjust for different screen sizes */
+  .location-container {
+    display: none;
+  }
+}

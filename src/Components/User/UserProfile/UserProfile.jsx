@@ -24,7 +24,7 @@ const UserProfile = () => {
           Nome: docData.Nome || '',
           Telefone: docData.Telefone || '',
           CPF: docData.CPF || '',
-          RG: docData.RG || '',
+          CEP: docData.CEP || '',
         });  
       } else {
         // doc.data() will be undefined in this case
@@ -38,12 +38,12 @@ const UserProfile = () => {
     Nome: '',
     Telefone: '',
     CPF: '',
-    RG: '',
+    CEP: '',
   });
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    if (!data.Nome || !data.Telefone || !data.CPF || !data.RG) {
+    if (!data.Nome || !data.Telefone || !data.CPF || !data.CEP) {
       alert('Preencha todos os campos.');
       return;
     }
@@ -73,7 +73,7 @@ const UserProfile = () => {
       Nome: data.Nome,
       Telefone: data.Telefone ,
       CPF: data.CPF,
-      RG: data.RG 
+      CEP: data.CEP, 
     });
   };
 
@@ -101,9 +101,10 @@ const UserProfile = () => {
       />
       <TextField
         className="user-profile__input"
-        type="number"
-        label="Celular"
+        type="text"
+        label="Telefone"
         name="Telefone"
+        inputProps={{ maxLength: 9 }}
         value={data.Telefone}
         disabled={!isEditing}
         onChange={handleChange}
@@ -113,21 +114,22 @@ const UserProfile = () => {
         type="text"
         label="CPF"
         name="CPF"
+        inputProps={{ maxLength: 8 }}
         value={data.CPF}
         disabled={!isEditing}
         onChange={handleChange}
       />
       <TextField
         className="user-profile__input"
-        type="number"
-        label="RG"
-        name="RG"
-        value={data.RG}
+        type="text"
+        label="CEP"
+        inputProps={{ maxLength: 7 }}
+        name="CEP"
+        value={data.CEP}
         disabled={!isEditing}
         onChange={handleChange}
       />
 
-      <br/>
         
       <div className="user-profile_button-container">
       {isEditing ? (

@@ -12,7 +12,16 @@
   letter-spacing: 0.06em;
   color: black;
 }
-
+.title1 {
+  padding-top: 1rem;
+  margin-bottom: 1rem; 
+  font-weight: bold;
+  margin: 1rem 0 1rem 0 ;
+  font-family: "Bebas Neue";
+  font-size: 50px;
+  letter-spacing: 0.06em;
+  color: black;
+}
 .cart-details {
   display: flex;
   flex-direction: column;
@@ -34,7 +43,8 @@
 }
 
 .emptyButton {
-  margin-right: 2rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
   padding: 0.8rem;
   min-width: 120px;
   font-size: 1.2rem;
@@ -75,4 +85,7 @@
   border-color: #92ce52;
   background-color: #fff;
     color: #92ce52;
+}
+.evemail {
+  margin-bottom: 2rem;
 }

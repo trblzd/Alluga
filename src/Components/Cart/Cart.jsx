@@ -29,9 +29,9 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
       // CONTEUDO DO EMAIL
       var emailText = `
         Nome: ${docData.Nome}
-        RG: ${docData.RG}
-        CPF: ${docData.CPF}
         Telefone: ${docData.Telefone}
+        CPF: ${docData.CPF}
+        CEP: ${docData.CEP}
         \n
         Itens do Carrinho:
         ${cart.line_items
@@ -67,21 +67,23 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((lineitem) => (
-          <Grid item xs={12} sm={4} key={lineitem.id}>
+           <Grid item xs={12} sm={6} md={4} key={lineitem.id}>
             <CartItem item={lineitem} onRemoveFromCart={handleRemoveFromCart} />
           </Grid>
         ))}
       </Grid>                                                     
       <div class='cardDetails'>
-        <Typography variant='h4' class='title'>
+        <Typography variant='h4' class='title1'>
           Subtotal: {cart.subtotal.formatted_with_symbol}
         </Typography>
+        {sendingEmail && <Typography variant='subtitle1' color='textSecondary' class='evemail'>Enviando pedido para o email do Alluga...</Typography>}
+        {emailSent && <Typography variant='subtitle1' color='success' class='evemail'>O pedido foi enviado com sucesso! Entraremos em contato.</Typography>}
         <div>
           <Button class='emptyButton' size='large' type='button' variant='contained' onClick={handleEmptyCart}>Esvaziar Carrinho</Button>
           <Button class='checkoutButton' size='large' type='button' variant='contained' onClick={sendEmail} disabled={sendingEmail}>Concluir Aluguel</Button>
+
         </div>
-        {sendingEmail && <Typography variant='subtitle1' color='textSecondary' class='evemail'>Enviando email para o Alluga...</Typography>}
-        {emailSent && <Typography variant='subtitle1' color='success' class='evemail'>O pedido foi enviado com sucesso!</Typography>}
+       
       </div>
     </>
   );
