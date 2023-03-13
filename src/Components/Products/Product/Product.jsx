@@ -14,7 +14,7 @@ const Product = ({ product, onAddToCart }) => {
                     <AddShoppingCart id='shct' />
                 </IconButton>
             </CardActions>
-            <CardContent>
+            <CardContent class='cardcontent'>
                     <Typography variant='h5' gutterBottom class='cardheading'>{product.name}</Typography>
                     <Typography class='cardtext' dangerouslySetInnerHTML={{ __html: product.description }} variant='body2' color='textSecondary' />
                     <Typography variant='h5' class='cardtext'>{product.price.formatted_with_symbol}/Dia</Typography>

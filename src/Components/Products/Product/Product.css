@@ -53,7 +53,12 @@
 }
 
 .cardtext {
+   -webkit-line-clamp: 4;
   padding: 10px 15px;
   font-size: 14px;
   color: #636262;
+}
+.cardcontent {
+  height: 11rem;
+  overflow: hidden;
 }

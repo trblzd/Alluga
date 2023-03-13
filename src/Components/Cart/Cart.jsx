@@ -10,7 +10,7 @@ import { doc, getDoc, collection } from "firebase/firestore";
 import {db} from '../../firebase';
 
 const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
-  const {currentUser} = useContext(AuthContext)
+  const {currentUser} = useContext(AuthContext);
   const [sendingEmail, setSendingEmail] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
@@ -92,8 +92,6 @@ const Cart = ({ cart, handleRemoveFromCart, handleEmptyCart }) => {
     <Container>
       <div class='toolbar' />
       <Typography class='title' gutterBottom>Seu Carrinho</Typography> <br/>
-     
-
             {!cart.line_items?.length ? <EmptyCart /> : <FilledCart />}
         </Container>
     )
