@@ -79,7 +79,7 @@
 .loctext {
   padding-top: 0.2rem;
   font-size: 1.6rem;
-  font-family: 'BEBAS NEUE';
+  font-family: Arial, Helvetica, sans-serif;
 }
 @media (max-width: 768px) { /* Change the max-width value to adjust for different screen sizes */
   .location-container {

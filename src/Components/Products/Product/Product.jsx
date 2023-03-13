@@ -11,7 +11,7 @@ const Product = ({ product, onAddToCart }) => {
             </CardMedia>
                 <CardActions disableSpacing class='cardactionpro'>
                 <IconButton aria-label='Add to Cart' onClick={() => onAddToCart(product.id, 1)}>
-                    <AddShoppingCart />
+                    <AddShoppingCart id='shct' />
                 </IconButton>
             </CardActions>
             <CardContent>

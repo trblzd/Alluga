@@ -102,9 +102,9 @@ const UserProfile = () => {
       <TextField
         className="user-profile__input"
         type="text"
-        label="Telefone"
+        label="DDD + Telefone"
         name="Telefone"
-        inputProps={{ maxLength: 9 }}
+        inputProps={{ maxLength: 11 }}
         value={data.Telefone}
         disabled={!isEditing}
         onChange={handleChange}
@@ -114,7 +114,7 @@ const UserProfile = () => {
         type="text"
         label="CPF"
         name="CPF"
-        inputProps={{ maxLength: 8 }}
+        inputProps={{ maxLength: 11 }}
         value={data.CPF}
         disabled={!isEditing}
         onChange={handleChange}
@@ -123,7 +123,7 @@ const UserProfile = () => {
         className="user-profile__input"
         type="text"
         label="CEP"
-        inputProps={{ maxLength: 7 }}
+        inputProps={{ maxLength: 8 }}
         name="CEP"
         value={data.CEP}
         disabled={!isEditing}

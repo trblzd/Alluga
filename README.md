@@ -1,3 +1,3 @@
-# Alluga morreu mais de 50 vezes na ultima semana.
+# Alluga morreu mais de 1000 vezes.
 
-o tal do alluga não tankou allugar a si mesmo e foi de base.
+Nasceu cresceu e chorou muito mas o Alluga nasceu!
